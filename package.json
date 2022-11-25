@@ -1,0 +1,33 @@
+{
+  "name": "full-stack-thesis-project",
+  "version": "1.0.0",
+  "description": "Full Stack App Event Planner",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd ./backend && npm i && cd ../frontend npm i",
+    "frontend:format-check": "cd ./frontend && npm run format:client",
+    "lint:frontend": "cd ./frontend && npm run lint:client",
+    "start:frontend": "cd ./frontend && npm start",
+    "backend:format-check": "cd ./backend && npm run format-check:prettier",
+    "lint:backend": "cd ./backend && npm run lint",
+    "start:backend-dev": "cd ./backend && npm run start:dev",
+    "build:backend": "cd ./backend && npm run build",
+    "clean:backend": "cd backend && npm run clean",
+    "prepare:prod": "cd backend && npm run start:production",
+    "prepare": "husky install"
+  },
+  "keywords": [],
+  "author": "Gustavo Silva / James Warnsby / Patrick Hull",
+  "license": "ISC",
+  "devDependencies": {
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
