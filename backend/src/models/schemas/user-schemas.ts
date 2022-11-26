@@ -20,11 +20,11 @@ export const UserSchema = sequelize.define<Model<IUser, Optional<IUser, 'id'>>>(
       },
     },
   },
-  userPicUrl: {
+  picUrl: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  public_picture_id: {
+  publicPic_id: {
     type: DataTypes.STRING,
     allowNull: true,
   },
