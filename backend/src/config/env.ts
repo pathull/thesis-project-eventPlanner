@@ -7,6 +7,9 @@ const env = {
   dbDialect: process.env.DB_SQL_DIALECT,
   dbAppPort: Number(process.env.PORT_PROD),
   clientAppUrl: process.env.CLIENT_DOMAIN,
+  cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+  cloudPublicKey: process.env.CLOUDINARY_PUBLIC_KEY,
+  cloudSecretKey: process.env.CLOUDINARY_SECRET_KEY,
 };
 
 if (process.env.NODE_ENV === 'development') {
