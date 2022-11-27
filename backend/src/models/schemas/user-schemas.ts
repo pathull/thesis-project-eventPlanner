@@ -1,7 +1,8 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 
-import { IUser } from '../../types/app-types';
 import { sequelize } from '../connectionDb';
+import { IUser } from '../../types/app-types';
+import { EventsSchema } from '../schemas/event-schema';
 
 export const UserSchema = sequelize.define<Model<IUser, Optional<IUser, 'id'>>>('users', {
   id: {
@@ -44,4 +45,15 @@ export const UserSchema = sequelize.define<Model<IUser, Optional<IUser, 'id'>>>(
     type: DataTypes.STRING,
     allowNull: true,
   },
+});
+
+//* Creating relations for users
+UserSchema.hasMany(EventsSchema, {
+  foreignKey: 'createdBy',
+  sourceKey: 'id',
+});
+
+EventsSchema.belongsTo(UserSchema, {
+  foreignKey: 'createdBy',
+  targetKey: 'id',
 });
