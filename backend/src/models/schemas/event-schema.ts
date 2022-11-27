@@ -1,7 +1,8 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 
-import { IEvents } from '../../types/app-types';
 import { sequelize } from '../connectionDb';
+import { MemberSchema } from './member-schemas';
+import { IEvents } from '../../types/app-types';
 
 export const EventsSchema = sequelize.define<Model<IEvents, Optional<IEvents, 'id'>>>('events', {
   id: {
@@ -42,4 +43,15 @@ export const EventsSchema = sequelize.define<Model<IEvents, Optional<IEvents, 'i
     allowNull: false,
     defaultValue: '',
   },
+});
+
+//? One To many relation
+EventsSchema.hasMany(MemberSchema, {
+  foreignKey: 'event_id',
+  sourceKey: 'id',
+});
+
+MemberSchema.belongsTo(EventsSchema, {
+  foreignKey: 'event_id',
+  targetKey: 'id',
 });

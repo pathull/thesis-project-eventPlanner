@@ -2,7 +2,13 @@ import { Request, Response, NextFunction } from 'express';
 
 import { IUser } from '../types/app-types';
 import { IParamReqUser } from '../types/routes-types';
-import { addNewUserToDB, getSingleUserInfo, retrieveArrayOfUsers, modifyUserInfo } from '../models/daos/user-daos';
+import {
+  addNewUserToDB,
+  getSingleUserInfo,
+  retrieveArrayOfUsers,
+  modifyUserInfo,
+  userListsMembers,
+} from '../models/daos/user-daos';
 
 export const retrieveUserInfo = async (req: Request<IParamReqUser>, res: Response, next: NextFunction) => {
   try {
@@ -39,8 +45,17 @@ export const getListOfUsers = async (req: Request, res: Response, next: NextFunc
 export const updateUserInfo = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const updatedUser = await modifyUserInfo(req.params.userId, req.body, req.file);
-
     return res.status(200).json(updatedUser);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+export const userListsNoCurrentUser = async (req: Request<IParamReqUser>, res: Response, next: NextFunction) => {
+  try {
+    const users = await userListsMembers(req.params.userId);
+    return res.status(200).json(users);
   } catch (err) {
     console.error(err);
     next(err);

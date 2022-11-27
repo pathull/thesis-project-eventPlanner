@@ -1,7 +1,8 @@
 import { EventsSchema } from '../schemas/event-schema';
+import { MemberSchema } from '../schemas/member-schemas';
 import { uploadImage } from '../../services/cloudinary';
 import { checkId, removeImageFromServer } from '../../helpers/helpers-functions';
-import { IEvents, IFileImage } from '../../types/app-types';
+import { IEvents, IFileImage, IMember, IMembersResFetch } from '../../types/app-types';
 import { AppErrors, HttpStatusCode } from '../../helpers/app-error';
 
 export const addNewEvent = async (data: IEvents, picture?: IFileImage) => {
@@ -44,6 +45,32 @@ export const getSingleEvent = async (eventId: string) => {
     });
 
     return event;
+  }
+
+  throw new AppErrors({ message: 'Invalid ID', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+};
+
+export const addMemberToEvent = async (userId: string, eventId: string, data: IMembersResFetch) => {
+  if (checkId(userId) && checkId(eventId)) {
+    const findEvent = await EventsSchema.findOne({
+      where: {
+        createdBy: userId,
+        id: eventId,
+      },
+    });
+
+    if (findEvent && Array.isArray(data.members)) {
+      //TODO check how the data is coming???
+      const membersToAdd = data.members.map(element => {
+        if (checkId(element.value) && element.value !== userId) {
+          return { user_id: Number(element.value), event_id: Number(eventId) };
+        }
+      }) as unknown as IMember[];
+
+      const listOfMembers = await MemberSchema.bulkCreate(membersToAdd);
+
+      return listOfMembers;
+    }
   }
 
   throw new AppErrors({ message: 'Invalid ID', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
