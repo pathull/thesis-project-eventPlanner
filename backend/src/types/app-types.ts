@@ -19,3 +19,15 @@ export interface IFileImage {
   path: string;
   size: number;
 }
+
+export interface IEvents {
+  id?: number;
+  createdBy?: number;
+  location: string;
+  eventDate: Date;
+  eventName: string;
+  description: string;
+  picUrl?: string;
+  publicPic_id?: string;
+  topic?: string;
+}

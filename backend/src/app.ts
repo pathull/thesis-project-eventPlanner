@@ -6,7 +6,7 @@ import env from './config/env';
 
 (async function main() {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log(`Connection to ${env.dbDataBaseName} has been established successfully`);
 
     app.listen(app.get('port'), () => {
