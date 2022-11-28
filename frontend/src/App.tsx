@@ -10,14 +10,14 @@ function App() {
 
   if (isAuthenticated) {
     return (
-      <div>
-        <BrowserRouter>
-          {isAuthenticated ? <NavBar /> : null}
+      <BrowserRouter>
+        <div className="container">
           <Routes>
-            <Route path="/main" element={<MainPage />} />
+            <Route path="/" element={<MainPage />} />
           </Routes>
-        </BrowserRouter>
-      </div>
+          <NavBar />
+        </div>
+      </BrowserRouter>
     );
   } else {
     return (
