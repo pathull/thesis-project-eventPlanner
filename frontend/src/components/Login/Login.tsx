@@ -11,16 +11,17 @@ export const Login = (): JSX.Element => {
         src="https://res.cloudinary.com/dukuzakaw/image/upload/v1669417452/plannerApp/loginImage/login_image_tipn8h.webp"
         alt="Login Background"
       />
+
       <div className="flex justify-center items-center h-full">
         <div className="max-w-[800px] mx-auto bg-white p-8 rounded-md">
           <h2 className="text-5xl font-bold py-4">Plan your next event with friends and family with ease.</h2>
           <div className="flex justify-center">
             <button
-              onClick={() => void loginWithPopup()}
+              onClick={() => void loginWithPopup}
               type="button"
               className="relative bg-[#6b705c] hover:bg-[#a5a58d] rounded-md py-2 px-6 text-white text-2xl"
             >
-              Log In
+              Join us
             </button>
           </div>
           <p className="font-semibold text-[18px] mt-6">Never forget an event or what to bring!</p>
