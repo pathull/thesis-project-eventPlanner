@@ -1,7 +1,9 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 
-import { IUser } from '../../types/app-types';
 import { sequelize } from '../connectionDb';
+import { EventsSchema } from '../schemas/event-schema';
+import { MemberSchema } from './member-schemas';
+import { IUser } from '../../types/app-types';
 
 export const UserSchema = sequelize.define<Model<IUser, Optional<IUser, 'id'>>>('users', {
   id: {
@@ -20,11 +22,11 @@ export const UserSchema = sequelize.define<Model<IUser, Optional<IUser, 'id'>>>(
       },
     },
   },
-  userPicUrl: {
+  picUrl: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  public_picture_id: {
+  publicPic_id: {
     type: DataTypes.STRING,
     allowNull: true,
   },
@@ -44,4 +46,26 @@ export const UserSchema = sequelize.define<Model<IUser, Optional<IUser, 'id'>>>(
     type: DataTypes.STRING,
     allowNull: true,
   },
+});
+
+//? One to many relations
+UserSchema.hasMany(EventsSchema, {
+  foreignKey: 'createdBy',
+  sourceKey: 'id',
+  onDelete: 'CASCADE',
+});
+
+EventsSchema.belongsTo(UserSchema, {
+  foreignKey: 'createdBy',
+  targetKey: 'id',
+});
+
+UserSchema.hasMany(MemberSchema, {
+  foreignKey: 'user_id',
+  sourceKey: 'id',
+});
+
+MemberSchema.belongsTo(UserSchema, {
+  foreignKey: 'user_id',
+  targetKey: 'id',
 });
