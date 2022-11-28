@@ -51,3 +51,10 @@ interface MultiSelectValues {
 export interface IMembersResFetch {
   members: Array<MultiSelectValues>;
 }
+
+export interface IListItems {
+  id?: number;
+  event_id?: number;
+  list_name: string;
+  userItem_id?: number;
+}
