@@ -7,11 +7,11 @@ export const Login = (): JSX.Element => {
     <div className="relative w-full h-screen bg-zinc-900/90">
       <img
         loading="lazy"
-        className="absolute w-full h-full object-cover mix-blend-overlay"
+        className="absolute w-full h-full object-cover"
         src="https://res.cloudinary.com/dukuzakaw/image/upload/v1669417452/plannerApp/loginImage/login_image_tipn8h.webp"
         alt="Login Background"
       />
-      <div className="flex justify-center items-center h-full">
+      <div className="flex justify-center items-center h-full relative">
         <div className="max-w-[800px] mx-auto bg-white p-8 rounded-md">
           <h2 className="text-5xl font-bold py-4">Plan your next event with friends and family with ease.</h2>
           <div className="flex justify-center">
