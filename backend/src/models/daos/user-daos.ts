@@ -7,7 +7,7 @@ import { AppErrors, HttpStatusCode } from '../../helpers/app-error';
 import { IUser, IFileImage } from '../../types/app-types';
 
 export const addNewUserToDB = async (data: IUser) => {
-  const { email, username, picUrl } = data;
+  const { email, username, picUrl, name } = data;
 
   if (checkValidEmail(email)) {
     const userFound = await UserSchema.findOne({
@@ -23,7 +23,7 @@ export const addNewUserToDB = async (data: IUser) => {
         picUrl,
         publicPic_id: '',
         lastName: '',
-        name: '',
+        name,
       });
 
       return newUser;
