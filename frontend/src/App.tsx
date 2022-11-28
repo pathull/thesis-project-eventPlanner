@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Login } from './components/Login/Login';
 import { MainPage } from './components/MainPage/MainPage';
-import { LogoutButton } from './components/Logout/Logout';
+import { NavBar } from './components/NavBar/NavBar';
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -12,9 +12,9 @@ function App() {
     return (
       <div>
         <BrowserRouter>
+          {isAuthenticated ? <NavBar /> : null}
           <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/logout" element={<LogoutButton />} />
+            <Route path="/main" element={<MainPage />} />
           </Routes>
         </BrowserRouter>
       </div>
