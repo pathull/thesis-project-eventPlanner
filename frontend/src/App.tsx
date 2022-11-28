@@ -1,6 +1,8 @@
-import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+
+import './App.css';
+
 import { Login } from './components/Login/Login';
 import { MainPage } from './components/MainPage/MainPage';
 import { NavBar } from './components/NavBar/NavBar';

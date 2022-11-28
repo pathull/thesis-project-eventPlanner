@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { IEvents } from '../types/app-types';
-import { IParamEvent } from '../types/routes-types';
-import { addNewEvent, getArrayOfEvents, getSingleEvent } from '../models/daos/event-daos';
+import { IParamEvent, IParamMember } from '../types/routes-types';
+import { addNewEvent, getArrayOfEvents, getSingleEvent, addMemberToEvent } from '../models/daos/event-daos';
 
 export const createNewEvent = async (req: Request<never, never, IEvents>, res: Response, next: NextFunction) => {
   try {
@@ -30,6 +30,17 @@ export const retrieveSingleEvent = async (req: Request<IParamEvent>, res: Respon
 
     if (event) return res.status(200).json(event);
     return res.status(400).json({ message: 'Event not Found', error: true, code: 3 });
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+export const insertNewMemberToEvent = async (req: Request<IParamMember>, res: Response, next: NextFunction) => {
+  try {
+    const listMembers = await addMemberToEvent(req.params.userId, req.params.eventId, req.body);
+
+    return res.status(200).json(listMembers);
   } catch (err) {
     console.error(err);
     next(err);

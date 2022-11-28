@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { UserSchema } from '../schemas/user-schemas';
 
 import { checkValidEmail, checkId, removeImageFromServer } from '../../helpers/helpers-functions';
@@ -88,4 +89,17 @@ export const modifyUserInfo = async (userId: string, data: IUser, picture?: IFil
 
   if (picture) removeImageFromServer(picture.path); //TODO check image was deleted from server
   throw new AppErrors({ message: 'Invalid ID', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+};
+
+export const userListsMembers = async (userId: string) => {
+  if (checkId(userId)) {
+    const users = await UserSchema.findAll({
+      where: {
+        [Op.not]: { id: userId },
+      },
+      attributes: { exclude: ['createdAt', 'updatedAt', 'publicPic_id'] },
+    });
+
+    return users;
+  }
 };

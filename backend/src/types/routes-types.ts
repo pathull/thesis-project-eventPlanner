@@ -5,3 +5,5 @@ export interface IParamReqUser {
 export interface IParamEvent {
   eventId: string;
 }
+
+export interface IParamMember extends IParamEvent, IParamReqUser {}
