@@ -14,8 +14,7 @@ function App() {
   if (isAuthenticated) {
     return (
       <BrowserRouter>
-        <div>
-          <NavBar />
+        <div className="container">
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/create-event" element={<CreateEvent />} />
