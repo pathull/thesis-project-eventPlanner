@@ -61,13 +61,11 @@ export const addMemberToEvent = async (userId: string, eventId: string, data: IM
 
     if (findEvent && Array.isArray(data.members)) {
       //TODO check how the data is coming???
-      const membersToAdd = data.members.map(element => {
-        if (checkId(element.value) && element.value !== userId) {
-          return { user_id: Number(element.value), event_id: Number(eventId) };
-        }
-      }) as unknown as IMember[];
+      const members = data.members
+        .filter(member => checkId(member.value) && member.value !== userId)
+        .map(element => ({ user_id: Number(element.value), event_id: Number(eventId) })) as unknown as IMember[];
 
-      const listOfMembers = await MemberSchema.bulkCreate(membersToAdd);
+      const listOfMembers = await MemberSchema.bulkCreate(members);
 
       return listOfMembers;
     }
