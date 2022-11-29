@@ -15,10 +15,12 @@ function App() {
     return (
       <BrowserRouter>
         <div className="container">
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/create-event" element={<CreateEvent />} />
-          </Routes>
+          <div className="containerRoutes">
+            <Routes>
+              <Route path="/" element={<MainPage />} />
+              <Route path="/create-event" element={<CreateEvent />} />
+            </Routes>
+          </div>
           <NavBar />
         </div>
       </BrowserRouter>

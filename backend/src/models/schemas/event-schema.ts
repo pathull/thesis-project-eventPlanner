@@ -17,7 +17,7 @@ export const EventsSchema = sequelize.define<Model<IEvents, Optional<IEvents, 'i
     defaultValue: '',
   },
   eventDate: {
-    type: DataTypes.DATE,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   eventName: {

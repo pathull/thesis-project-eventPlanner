@@ -1,3 +1,4 @@
+import { ActualFileObject } from 'filepond';
 export interface IUser {
   id?: number;
   email: string;
@@ -20,4 +21,25 @@ export interface ServerErrors {
 
 export interface IUserContext {
   userInfo: IUser | null;
+}
+
+export interface IEvents {
+  id?: number;
+  createdBy?: number;
+  location: string;
+  eventDate: string;
+  eventName: string;
+  description: string;
+  picUrl?: string;
+  publicPic_id?: string;
+  topic?: string;
+}
+
+export interface IEventsData {
+  createdBy: string;
+  location: string;
+  eventDate: string;
+  eventName: string;
+  description: string;
+  eventPic: ActualFileObject;
 }

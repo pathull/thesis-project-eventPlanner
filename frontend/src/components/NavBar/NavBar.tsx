@@ -57,7 +57,7 @@ export const NavBar = () => {
             </h2>
           </Link>
           <Link
-            to="/"
+            to="/create-event"
             className={`group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-slate-500 rounded-md cursor-pointer`}
           >
             <div>

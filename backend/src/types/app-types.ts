@@ -26,7 +26,7 @@ export interface IEvents {
   id?: number;
   createdBy?: number;
   location: string;
-  eventDate: Date;
+  eventDate: string;
   eventName: string;
   description: string;
   picUrl?: string;
