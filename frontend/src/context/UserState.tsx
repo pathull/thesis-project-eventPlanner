@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { UserContext } from './UserContext';
-import { IUser } from '../types/app-types';
+import { IUserAPI } from '../types/app-types';
 import { createNewUser } from '../services/fetch-users';
 
 export const UserState = ({ children }: { children: JSX.Element }) => {
   const { isAuthenticated, user } = useAuth0();
-  const [userInfo, setUserInfo] = useState<IUser | null>(null);
+  const [userInfo, setUserInfo] = useState<IUserAPI | null>(null);
 
   useEffect(() => {
     if (isAuthenticated && user) {

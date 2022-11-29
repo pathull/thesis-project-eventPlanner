@@ -1,5 +1,5 @@
 import { env } from '../helpers/env';
-import { IUser, ServerErrors } from '../types/app-types';
+import { IUser, ServerErrors, IUserAPI } from '../types/app-types';
 
 export const createNewUser = async (data: IUser) => {
   try {
@@ -13,9 +13,26 @@ export const createNewUser = async (data: IUser) => {
       body: JSON.stringify(data),
     });
 
-    const newUser = (await result.json()) as unknown as IUser | ServerErrors;
+    const newUser = (await result.json()) as unknown as IUserAPI | ServerErrors;
 
     return newUser;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const retrieveMembersList = async (userId: number) => {
+  try {
+    if (userId) {
+      const list = await fetch(`${env.baseUrl}/api/users/all-users/${userId}`, {
+        method: 'GET',
+        mode: 'cors',
+      });
+
+      const result = (await list.json()) as IUserAPI[];
+
+      return result;
+    }
   } catch (err) {
     console.error(err);
   }

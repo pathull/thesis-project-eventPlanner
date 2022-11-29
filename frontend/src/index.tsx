@@ -6,6 +6,7 @@ import './index.css';
 
 import { env } from './helpers/env';
 import { UserState } from './context/UserState';
+import { CurrentEventState } from './context/CurrentEventState';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
     <Auth0Provider domain={env.domain} clientId={env.clientId} redirectUri="http://localhost:3000">
       <UserState>
-        <App />
+        <CurrentEventState>
+          <App />
+        </CurrentEventState>
       </UserState>
     </Auth0Provider>
   </React.StrictMode>

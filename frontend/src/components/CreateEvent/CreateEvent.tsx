@@ -12,6 +12,7 @@ import 'filepond/dist/filepond.min.css';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 
 import { UserContext } from '../../context/UserContext';
+import { CurrentEventContext } from '../../context/CurrentEventContext';
 import { createNewEvent } from '../../services/fetch-events';
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview, FilePondPluginFileValidateType);
@@ -26,6 +27,7 @@ const initialState = {
 export const CreateEvent = () => {
   const navigate = useNavigate();
   const userCtx = useContext(UserContext);
+  const eventCtx = useContext(CurrentEventContext);
   const [loadingRequest, setLoadingRequest] = useState(false);
   const [state, setState] = useState(initialState);
   const [picture, setPicture] = useState<FilePondFile[]>([]);
@@ -55,10 +57,11 @@ export const CreateEvent = () => {
 
         if (newEvent?.id) {
           setLoadingRequest(false);
-          navigate('/');
+          if (eventCtx) eventCtx.updateCurrentEvent(newEvent);
+          navigate('/add-members');
         } else {
           setLoadingRequest(false);
-          alert('Possible Error');
+          alert('Possible Error'); //TODO change the alert!
           navigate('/');
         }
       }

@@ -1,4 +1,5 @@
 import { ActualFileObject } from 'filepond';
+import { MultiValue } from 'react-select';
 export interface IUser {
   id?: number;
   email: string;
@@ -24,7 +25,7 @@ export interface IUserContext {
 }
 
 export interface IEvents {
-  id?: number;
+  id: number;
   createdBy?: number;
   location: string;
   eventDate: string;
@@ -42,4 +43,36 @@ export interface IEventsData {
   eventName: string;
   description: string;
   eventPic: ActualFileObject;
+}
+
+export interface IOptionsForMembers {
+  value: string;
+  label: string;
+}
+
+export interface IUserAPI {
+  id: number;
+  email: string;
+  picUrl?: string;
+  publicPic_id?: string;
+  username?: string;
+  name: string;
+  bio?: string;
+  lastName?: string;
+}
+
+export interface IDataMembers {
+  members: MultiValue<IOptionsForMembers[]>;
+}
+
+export interface ICurrentEventContext {
+  eventData: IEvents | null;
+  updateCurrentEvent: (event: IEvents) => void;
+}
+
+export interface IMembersAPI {
+  id: number;
+  activeMember: boolean;
+  event_id: number;
+  user_id: number;
 }

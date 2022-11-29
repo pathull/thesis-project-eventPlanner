@@ -6,6 +6,8 @@ import './App.css';
 import { Login } from './components/Login/Login';
 import { NavBar } from './components/NavBar/NavBar';
 import { CreateEvent } from './components/CreateEvent/CreateEvent';
+import { AddMembers } from './components/AddMembers/AddMembers';
+import { AddListItems } from './components/AddListItems/AddListItems';
 import { MainPage } from './components/MainPage/MainPage';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/create-event" element={<CreateEvent />} />
+              <Route path="/add-members" element={<AddMembers />} />
+              <Route path="/add-items" element={<AddListItems />} />
             </Routes>
           </div>
           <NavBar />
