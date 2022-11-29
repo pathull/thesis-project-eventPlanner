@@ -55,6 +55,6 @@ export interface IMembersResFetch {
 export interface IListItems {
   id?: number;
   event_id?: number;
-  list_name: string;
+  item_name: string;
   userItem_id?: number;
 }

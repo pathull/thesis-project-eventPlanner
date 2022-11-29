@@ -10,7 +10,7 @@ export const ItemListSchema = sequelize.define<Model<IListItems, Optional<IListI
     autoIncrement: true,
     allowNull: false,
   },
-  list_name: {
+  item_name: {
     type: DataTypes.STRING,
     allowNull: false,
   },

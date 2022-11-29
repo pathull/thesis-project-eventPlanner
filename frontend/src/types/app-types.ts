@@ -76,3 +76,7 @@ export interface IMembersAPI {
   event_id: number;
   user_id: number;
 }
+
+export interface IDataItems {
+  item_name: string;
+}
