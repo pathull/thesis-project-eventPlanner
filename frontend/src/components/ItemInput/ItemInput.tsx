@@ -16,7 +16,7 @@ export const ItemInput = ({ id, setItemList }: IProps) => {
   const handleSave = () => {
     setState(!state);
 
-    setItemList(list => [...list, { item_name: itemName }]);
+    if (itemName !== '') setItemList(list => [...list, { item_name: itemName }]);
   };
 
   return (

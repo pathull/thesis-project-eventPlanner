@@ -81,3 +81,9 @@ export interface IMembersAPI {
 export interface IDataItems {
   item_name: string;
 }
+
+export interface IListItems {
+  id: number;
+  event_id: number;
+  item_name: string;
+}
