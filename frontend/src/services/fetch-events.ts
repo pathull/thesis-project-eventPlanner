@@ -1,5 +1,13 @@
 import { env } from '../helpers/env';
-import { IEventsData, IEvents, IDataMembers, IMembersAPI, IDataItems, IListItems } from '../types/app-types';
+import {
+  IEventsData,
+  IEvents,
+  IDataMembers,
+  IMembersAPI,
+  IDataItems,
+  IListItems,
+  ISingleEvent,
+} from '../types/app-types';
 
 export const createNewEvent = async (data: IEventsData) => {
   try {
@@ -59,6 +67,22 @@ export const addItemsToEvent = async (eventId: number, data: { items: Array<IDat
 
       const itemsList = (await res.json()) as unknown as Array<IListItems>;
       return itemsList;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getSingleEventInfo = async (eventId: string) => {
+  try {
+    if (eventId) {
+      const data = await fetch(`${env.baseUrl}/api/events/single-event/${eventId}`, {
+        method: 'GET',
+        mode: 'cors',
+      });
+
+      const event = (await data.json()) as unknown as ISingleEvent;
+      return event;
     }
   } catch (err) {
     console.error(err);

@@ -8,6 +8,7 @@ import { NavBar } from './components/NavBar/NavBar';
 import { CreateEvent } from './components/CreateEvent/CreateEvent';
 import { AddMembers } from './components/AddMembers/AddMembers';
 import { AddListItems } from './components/AddListItems/AddListItems';
+import { SingleEvent } from './components/SingleEvent/SingleEvent';
 import { MainPage } from './components/MainPage/MainPage';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
               <Route path="/create-event" element={<CreateEvent />} />
               <Route path="/add-members" element={<AddMembers />} />
               <Route path="/add-items" element={<AddListItems />} />
+              <Route path="/single-event/:eventId" element={<SingleEvent />} />
             </Routes>
           </div>
           <NavBar />

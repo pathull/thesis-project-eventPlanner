@@ -42,8 +42,18 @@ export const getArrayOfEvents = async () => {
 
 export const getSingleEvent = async (eventId: string) => {
   if (checkId(eventId)) {
-    const event = await EventsSchema.findByPk(eventId, {
+    const event = await EventsSchema.findOne({
+      where: { id: eventId },
       attributes: { exclude: ['createdAt', 'updatedAt', 'publicPic_id'] },
+      include: [
+        {
+          model: MemberSchema,
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+        },
+        {
+          model: ItemListSchema,
+        },
+      ],
     });
 
     return event;

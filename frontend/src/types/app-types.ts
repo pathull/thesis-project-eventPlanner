@@ -87,3 +87,16 @@ export interface IListItems {
   event_id: number;
   item_name: string;
 }
+
+export interface ISingleEvent {
+  id: number;
+  location: string;
+  eventDate: string;
+  eventName: string;
+  description: string;
+  picUrl: string;
+  topic: string;
+  createdBy: number;
+  members: Array<IMembersAPI>;
+  items: Array<IListItems>;
+}
