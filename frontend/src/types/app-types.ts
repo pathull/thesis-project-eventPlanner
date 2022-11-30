@@ -27,14 +27,14 @@ export interface IUserContext {
 
 export interface IEvents {
   id: number;
-  createdBy?: number;
+  createdBy: number;
   location: string;
   eventDate: string;
   eventName: string;
   description: string;
-  picUrl?: string;
+  picUrl: string;
   publicPic_id?: string;
-  topic?: string;
+  topic: string;
 }
 
 export interface IEventsData {

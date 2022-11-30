@@ -88,3 +88,17 @@ export const getSingleEventInfo = async (eventId: string) => {
     console.error(err);
   }
 };
+
+export const retrieveAllListOfEvents = async () => {
+  try {
+    const dataList = await fetch(`${env.baseUrl}/api/events/all-events`, {
+      method: 'GET',
+      mode: 'cors',
+    });
+
+    const eventList = (await dataList.json()) as IEvents[];
+    return eventList;
+  } catch (err) {
+    console.error(err);
+  }
+};
