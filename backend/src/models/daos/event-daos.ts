@@ -1,8 +1,10 @@
 import { EventsSchema } from '../schemas/event-schema';
 import { MemberSchema } from '../schemas/member-schemas';
+import { ItemListSchema } from '../schemas/items-schema';
 import { uploadImage } from '../../services/cloudinary';
 import { checkId, removeImageFromServer } from '../../helpers/helpers-functions';
 import { IEvents, IFileImage, IMember, IMembersResFetch } from '../../types/app-types';
+import { IItemsBody } from '../../types/routes-types';
 import { AppErrors, HttpStatusCode } from '../../helpers/app-error';
 
 export const addNewEvent = async (data: IEvents, picture?: IFileImage) => {
@@ -72,4 +74,23 @@ export const addMemberToEvent = async (userId: string, eventId: string, data: IM
   }
 
   throw new AppErrors({ message: 'Invalid ID', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+};
+
+export const insertItemsIntoDb = async (eventId: string, data: IItemsBody) => {
+  if (checkId(eventId)) {
+    const eventFound = await EventsSchema.findByPk(eventId);
+
+    if (eventFound) {
+      if (Array.isArray(data.items) && data.items.length > 0) {
+        const itemList = data.items.map(element => ({ item_name: element.item_name, event_id: Number(eventId) }));
+
+        const list = await ItemListSchema.bulkCreate(itemList);
+        return list;
+      }
+    } else {
+      throw new AppErrors({ message: 'Event does not exist', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+    }
+  }
+
+  throw new AppErrors({ message: 'Invalid ID or Data is not coming', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
 };

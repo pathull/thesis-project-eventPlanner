@@ -7,3 +7,9 @@ export interface IParamEvent {
 }
 
 export interface IParamMember extends IParamEvent, IParamReqUser {}
+
+export interface IItemsBody {
+  items: Array<{
+    item_name: string;
+  }>;
+}

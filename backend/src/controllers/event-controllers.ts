@@ -1,8 +1,14 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { IEvents } from '../types/app-types';
-import { IParamEvent, IParamMember } from '../types/routes-types';
-import { addNewEvent, getArrayOfEvents, getSingleEvent, addMemberToEvent } from '../models/daos/event-daos';
+import { IParamEvent, IParamMember, IItemsBody } from '../types/routes-types';
+import {
+  addNewEvent,
+  getArrayOfEvents,
+  getSingleEvent,
+  addMemberToEvent,
+  insertItemsIntoDb,
+} from '../models/daos/event-daos';
 
 export const createNewEvent = async (req: Request<never, never, IEvents>, res: Response, next: NextFunction) => {
   try {
@@ -41,6 +47,21 @@ export const insertNewMemberToEvent = async (req: Request<IParamMember>, res: Re
     const listMembers = await addMemberToEvent(req.params.userId, req.params.eventId, req.body);
 
     return res.status(200).json(listMembers);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+export const insertListOfItems = async (
+  req: Request<IParamEvent, never, IItemsBody>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const items = await insertItemsIntoDb(req.params.eventId, req.body);
+
+    return res.status(201).json(items);
   } catch (err) {
     console.error(err);
     next(err);

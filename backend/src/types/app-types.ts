@@ -56,5 +56,4 @@ export interface IListItems {
   id?: number;
   event_id?: number;
   item_name: string;
-  userItem_id?: number;
 }
