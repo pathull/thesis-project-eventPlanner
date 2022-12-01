@@ -1,0 +1,69 @@
+.singleEvent__banner {
+  width: 100%;
+  height: 350px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 15px 15px 0px 0px;
+  -webkit-border-radius: 15px 15px 0px 0px;
+  -moz-border-radius: 15px 15px 0px 0px;
+  -ms-border-radius: 15px 15px 0px 0px;
+  -o-border-radius: 15px 15px 0px 0px;
+}
+
+.singleEvent__overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-radius: 15px 15px 0px 0px;
+  -webkit-border-radius: 15px 15px 0px 0px;
+  -moz-border-radius: 15px 15px 0px 0px;
+  -ms-border-radius: 15px 15px 0px 0px;
+  -o-border-radius: 15px 15px 0px 0px;
+}
+
+.singleEvent__mainTitle {
+  justify-self: center;
+  align-self: center;
+  font-size: 3rem;
+  color: #fff;
+}
+
+.singleEvent__info {
+  align-self: flex-end;
+  display: flex;
+  justify-content: space-around;
+}
+
+.singleEvent__info > p {
+  font-size: 1.3rem;
+  color: #fff;
+}
+
+.singleEvent__details,
+.singleEvent__members {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.singleEvent__details > h2,
+.singleEvent__members > h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.singleEvent__details > p {
+  font-size: 1.2rem;
+  font-weight: 300;
+  width: 85%;
+}
+
+.membersList__container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1.3rem 0;
+}

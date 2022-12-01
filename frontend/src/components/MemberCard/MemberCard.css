@@ -1,0 +1,41 @@
+.memberCard__container {
+  overflow: hidden;
+  box-shadow: 0 4px 25px #e1e5ee;
+  border-radius: 10px;
+  width: 150px;
+  height: 200px;
+  transition: transform 200ms ease-in;
+}
+
+.memberContainer__details {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.7rem 0.7rem;
+}
+
+.memberContainer__image {
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.memberContainer__title {
+  padding: 0.5rem;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.memberCard__container:hover {
+  transform: scale(1.02);
+  background-color: rgb(62,62,63);
+  transition: 0.3s;
+  border-radius: 10px;
+  color: #fff;
+}
+
+.memberContainer__details > p {
+  font-weight: 300;
+}

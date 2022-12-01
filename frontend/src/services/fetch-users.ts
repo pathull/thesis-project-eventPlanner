@@ -37,3 +37,19 @@ export const retrieveMembersList = async (userId: number) => {
     console.error(err);
   }
 };
+
+export const getSingleUserInfo = async (userId: number) => {
+  try {
+    if (!isNaN(userId)) {
+      const userInfo = await fetch(`${env.baseUrl}/api/users/get/${userId}`, {
+        method: 'GET',
+        mode: 'cors',
+      });
+
+      const user = (await userInfo.json()) as unknown as IUserAPI;
+      return user;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};

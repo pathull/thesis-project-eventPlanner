@@ -54,7 +54,7 @@ export interface IOptionsForMembers {
 export interface IUserAPI {
   id: number;
   email: string;
-  picUrl?: string;
+  picUrl: string;
   publicPic_id?: string;
   username?: string;
   name: string;
