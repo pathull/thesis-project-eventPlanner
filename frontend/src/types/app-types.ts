@@ -22,7 +22,7 @@ export interface ServerErrors {
 }
 
 export interface IUserContext {
-  userInfo: IUser | null;
+  userInfo: IUserAPI | null;
 }
 
 export interface IEvents {
@@ -99,4 +99,12 @@ export interface ISingleEvent {
   createdBy: number;
   members: Array<IMembersAPI>;
   items: Array<IListItems>;
+}
+
+export interface ICollaboratorsList {
+  id: number;
+  item_id: number;
+  added: boolean;
+  member_id: number;
+  user: IUserAPI;
 }

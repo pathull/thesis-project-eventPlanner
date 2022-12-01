@@ -7,6 +7,7 @@ import {
   IDataItems,
   IListItems,
   ISingleEvent,
+  IUserAPI,
 } from '../types/app-types';
 
 export const createNewEvent = async (data: IEventsData) => {
@@ -98,6 +99,57 @@ export const retrieveAllListOfEvents = async () => {
 
     const eventList = (await dataList.json()) as IEvents[];
     return eventList;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const addCollaborator = async (itemId: number, userId: number, eventId: number) => {
+  try {
+    const data = await fetch(`${env.baseUrl}/api/events/add-item-collaborator/${userId}/item/${itemId}`, {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({ eventId }),
+    });
+
+    const user = (await data.json()) as unknown as IUserAPI;
+    return user;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getListCollaborators = async (itemId: number) => {
+  try {
+    if (itemId) {
+      const data = await fetch(`${env.baseUrl}/api/events/collaborations/${itemId}`, {
+        method: 'GET',
+        mode: 'cors',
+      });
+
+      const listUsers = (await data.json()) as unknown as IUserAPI[];
+      return listUsers;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const removeCollaboration = async (itemId: number, userId: number) => {
+  try {
+    if (itemId && userId) {
+      const data = await fetch(`${env.baseUrl}/api/events/collaboration/${itemId}/member/${userId}`, {
+        method: 'DELETE',
+        mode: 'cors',
+      });
+
+      const list = (await data.json()) as unknown as IUserAPI[];
+      return list;
+    }
   } catch (err) {
     console.error(err);
   }

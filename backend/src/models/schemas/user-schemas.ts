@@ -3,6 +3,7 @@ import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../connectionDb';
 import { EventsSchema } from '../schemas/event-schema';
 import { MemberSchema } from './member-schemas';
+import { MemberItemsSchema } from './memberItems-schema';
 import { IUser } from '../../types/app-types';
 
 export const UserSchema = sequelize.define<Model<IUser, Optional<IUser, 'id'>>>('users', {
@@ -67,5 +68,15 @@ UserSchema.hasMany(MemberSchema, {
 
 MemberSchema.belongsTo(UserSchema, {
   foreignKey: 'user_id',
+  targetKey: 'id',
+});
+
+UserSchema.hasMany(MemberItemsSchema, {
+  foreignKey: 'member_id',
+  sourceKey: 'id',
+});
+
+MemberItemsSchema.belongsTo(UserSchema, {
+  foreignKey: 'member_id',
   targetKey: 'id',
 });

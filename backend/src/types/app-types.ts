@@ -57,3 +57,11 @@ export interface IListItems {
   event_id?: number;
   item_name: string;
 }
+
+export interface IMemberItems {
+  id?: number;
+  added: boolean;
+  item_id: number;
+  member_id: number;
+  user?: IUser;
+}

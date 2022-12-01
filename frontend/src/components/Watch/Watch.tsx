@@ -34,7 +34,7 @@ export const Watch = ({ time }: { time: string }): JSX.Element => {
     return () => clearInterval(timer);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log(eventDate);
+  // console.log(eventDate);
 
   return (
     <div>

@@ -2,6 +2,7 @@ import { DataTypes, Model, Optional } from 'sequelize';
 
 import { sequelize } from '../connectionDb';
 import { IListItems } from '../../types/app-types';
+import { MemberItemsSchema } from './memberItems-schema';
 
 export const ItemListSchema = sequelize.define<Model<IListItems, Optional<IListItems, 'id'>>>(
   'items',
@@ -21,3 +22,14 @@ export const ItemListSchema = sequelize.define<Model<IListItems, Optional<IListI
     timestamps: false,
   }
 );
+
+//? One to many relationship
+ItemListSchema.hasMany(MemberItemsSchema, {
+  foreignKey: 'item_id',
+  sourceKey: 'id',
+});
+
+MemberItemsSchema.belongsTo(ItemListSchema, {
+  foreignKey: 'item_id',
+  targetKey: 'id',
+});

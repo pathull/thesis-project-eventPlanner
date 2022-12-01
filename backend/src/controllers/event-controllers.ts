@@ -1,13 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 
 import { IEvents } from '../types/app-types';
-import { IParamEvent, IParamMember, IItemsBody } from '../types/routes-types';
+import { IParamEvent, IParamMember, IItemsBody, IParamsCollaborator } from '../types/routes-types';
 import {
   addNewEvent,
   getArrayOfEvents,
   getSingleEvent,
   addMemberToEvent,
   insertItemsIntoDb,
+  addCollaborator,
+  listCollaboratorsPerItem,
+  deleteCollaborations,
 } from '../models/daos/event-daos';
 
 export const createNewEvent = async (req: Request<never, never, IEvents>, res: Response, next: NextFunction) => {
@@ -62,6 +65,42 @@ export const insertListOfItems = async (
     const items = await insertItemsIntoDb(req.params.eventId, req.body);
 
     return res.status(201).json(items);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+export const addCollaboratorToItemList = async (
+  req: Request<IParamsCollaborator, never, { eventId: number }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const userMember = await addCollaborator(req.params.itemId, req.params.userId, req.body);
+
+    return res.status(201).json(userMember);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+export const getListCollaborators = async (req: Request<IParamsCollaborator>, res: Response, next: NextFunction) => {
+  try {
+    const list = await listCollaboratorsPerItem(req.params.itemId);
+
+    return res.status(200).json(list);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+export const removeCollaboration = async (req: Request<IParamsCollaborator>, res: Response, next: NextFunction) => {
+  try {
+    const list = await deleteCollaborations(req.params.itemId, req.params.userId);
+    return res.status(200).json(list);
   } catch (err) {
     console.error(err);
     next(err);

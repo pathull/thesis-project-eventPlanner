@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 import './SingleEvent.css';
 
+import { CurrentEventContext } from '../../context/CurrentEventContext';
 import { MemberCard } from '../../components/MemberCard/MemberCard';
 import { ItemCard } from '../../components/ItemCard/ItemCard';
 import { Watch } from '../Watch/Watch';
@@ -11,17 +12,19 @@ import { ISingleEvent } from '../../types/app-types';
 
 export const SingleEvent = (): JSX.Element => {
   const { eventId } = useParams();
+  const eventCtx = useContext(CurrentEventContext);
   const [event, setEvent] = useState<ISingleEvent | null>(null);
 
   useEffect(() => {
     if (eventId) {
       void getSingleEventInfo(eventId).then(data => {
         if (data && data.id) {
+          eventCtx?.updateCurrentEvent(data);
           setEvent(data);
         }
       });
     }
-  }, [eventId]);
+  }, [eventId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!event) {
     return (
@@ -64,7 +67,7 @@ export const SingleEvent = (): JSX.Element => {
           {event.items.length > 0 ? (
             <div className="membersList__container">
               {event.items.map(item => (
-                <ItemCard key={item.id} item={item} />
+                <ItemCard key={item.id} item={item} event={event} />
               ))}
             </div>
           ) : (

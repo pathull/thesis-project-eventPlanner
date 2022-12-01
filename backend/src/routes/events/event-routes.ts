@@ -7,6 +7,9 @@ import {
   retrieveSingleEvent,
   insertNewMemberToEvent,
   insertListOfItems,
+  addCollaboratorToItemList,
+  getListCollaborators,
+  removeCollaboration,
 } from '../../controllers/event-controllers';
 
 const router = Router();
@@ -17,5 +20,8 @@ router.get('/single-event/:eventId', retrieveSingleEvent);
 router.patch('/add-member/:userId/event/:eventId', insertNewMemberToEvent);
 
 router.post('/add-items/:eventId', insertListOfItems);
+router.post('/add-item-collaborator/:userId/item/:itemId', addCollaboratorToItemList);
+router.get('/collaborations/:itemId', getListCollaborators);
+router.delete('/collaboration/:itemId/member/:userId', removeCollaboration);
 
 export default router;

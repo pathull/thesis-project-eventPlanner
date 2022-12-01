@@ -1,6 +1,8 @@
 import { EventsSchema } from '../schemas/event-schema';
 import { MemberSchema } from '../schemas/member-schemas';
 import { ItemListSchema } from '../schemas/items-schema';
+import { MemberItemsSchema } from '../schemas/memberItems-schema';
+import { UserSchema } from '../schemas/user-schemas';
 import { uploadImage } from '../../services/cloudinary';
 import { checkId, removeImageFromServer } from '../../helpers/helpers-functions';
 import { IEvents, IFileImage, IMember, IMembersResFetch } from '../../types/app-types';
@@ -103,4 +105,73 @@ export const insertItemsIntoDb = async (eventId: string, data: IItemsBody) => {
   }
 
   throw new AppErrors({ message: 'Invalid ID or Data is not coming', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+};
+
+export const addCollaborator = async (itemId: string, userId: string, data: { eventId: number }) => {
+  if (checkId(itemId) && checkId(userId) && checkId(data.eventId)) {
+    const itemFound = ItemListSchema.findByPk(itemId);
+    const memberExist = MemberSchema.findOne({
+      where: { event_id: data.eventId, user_id: userId },
+    });
+
+    const [item, member] = await Promise.all([itemFound, memberExist]);
+
+    if (item && member) {
+      const addCollaborator = MemberItemsSchema.create({
+        item_id: Number(itemId),
+        added: true,
+        member_id: Number(userId),
+      });
+
+      const userDetails = UserSchema.findOne({
+        where: { id: userId },
+        attributes: { exclude: ['createdAt', 'updatedAt'] },
+      });
+
+      const [newCollaboration, user] = await Promise.all([addCollaborator, userDetails]);
+
+      if (newCollaboration) {
+        return user;
+      }
+
+      throw new AppErrors({ message: 'Error adding collaboration', httpCode: HttpStatusCode.BAD_REQUEST, code: 5 });
+    }
+  }
+
+  throw new AppErrors({ message: 'Invalid ID or Data is not coming', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+};
+
+export const listCollaboratorsPerItem = async (itemId: string) => {
+  if (checkId(itemId)) {
+    const items = await MemberItemsSchema.findAll({
+      where: { item_id: itemId },
+      include: [
+        {
+          model: UserSchema,
+          attributes: { exclude: ['createdAt', 'updatedAt'] },
+        },
+      ],
+    });
+
+    const userList = items.map(item => item.toJSON().user);
+
+    return userList;
+  }
+
+  throw new AppErrors({ message: 'Invalid ID', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+};
+
+export const deleteCollaborations = async (itemId: string, userId: string) => {
+  if (checkId(itemId) && checkId(userId)) {
+    const removeCollaboration = await MemberItemsSchema.destroy({ where: { item_id: itemId, member_id: userId } });
+
+    if (removeCollaboration) {
+      const newList = await listCollaboratorsPerItem(itemId);
+      return newList;
+    }
+
+    throw new AppErrors({ message: 'Collaboration was not removed', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+  }
+
+  throw new AppErrors({ message: 'Invalid ID', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
 };

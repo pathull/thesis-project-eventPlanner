@@ -13,3 +13,7 @@ export interface IItemsBody {
     item_name: string;
   }>;
 }
+
+export interface IParamsCollaborator extends IParamReqUser, IParamEvent {
+  itemId: string;
+}
