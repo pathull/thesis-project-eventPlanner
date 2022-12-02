@@ -74,7 +74,6 @@ export const addMemberToEvent = async (userId: string, eventId: string, data: IM
     });
 
     if (findEvent && Array.isArray(data.members)) {
-      //TODO check how the data is coming???
       const members = data.members
         .filter(member => checkId(member.value) && member.value !== userId)
         .map(element => ({ user_id: Number(element.value), event_id: Number(eventId) })) as unknown as IMember[];

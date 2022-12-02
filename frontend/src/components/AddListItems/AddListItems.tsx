@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { CurrentEventContext } from '../../context/CurrentEventContext';
@@ -6,18 +6,17 @@ import { ItemInput } from '../ItemInput/ItemInput';
 import { addItemsToEvent } from '../../services/fetch-events';
 import { IDataItems } from '../../types/app-types';
 
-let counter = 1;
-
 export const AddListItems = () => {
   const navigate = useNavigate();
   const eventCtx = useContext(CurrentEventContext);
   const [itemNumber, setItemNumber] = useState<Array<number>>([1]);
   const [itemList, setItemList] = useState<Array<IDataItems>>([]);
   const [loading, setLoading] = useState(false);
+  const countRef = useRef(1);
 
   const handleCounter = () => {
-    counter = counter + 1;
-    setItemNumber(list => [...list, counter]);
+    countRef.current++;
+    setItemNumber(list => [...list, countRef.current]);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

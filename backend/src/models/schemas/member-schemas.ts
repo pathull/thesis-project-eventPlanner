@@ -16,34 +16,3 @@ export const MemberSchema = sequelize.define<Model<IMember, Optional<IMember, 'i
     defaultValue: true,
   },
 });
-
-//? Many to Many relationship
-// UserSchema.belongsToMany(EventsSchema, {
-//   through: MemberSchema,
-//   foreignKey: 'user_id',
-// });
-
-// EventsSchema.belongsToMany(UserSchema, {
-//   through: MemberSchema,
-//   foreignKey: 'event_id',
-// });
-
-// UserSchema.hasMany(MemberSchema, {
-//   foreignKey: 'user_id',
-//   sourceKey: 'id',
-// });
-
-// MemberSchema.belongsTo(UserSchema, {
-//   foreignKey: 'user_id',
-//   targetKey: 'id',
-// });
-
-// EventsSchema.hasMany(MemberSchema, {
-//   foreignKey: 'event_id',
-//   sourceKey: 'id',
-// });
-
-// MemberSchema.belongsTo(EventsSchema, {
-//   foreignKey: 'event_id',
-//   targetKey: 'id',
-// });

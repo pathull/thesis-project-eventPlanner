@@ -24,7 +24,11 @@ export const useUserList = (userId: number) => {
       const options = list.map(user => ({ value: String(user.id), label: user.name }));
       setUserList(options);
       setStatus('loaded');
+      return;
     }
+
+    setStatus('unloaded');
+    setUserList([]);
   };
 
   return [userList, status] as [Array<IOptionsForMembers>, Status];

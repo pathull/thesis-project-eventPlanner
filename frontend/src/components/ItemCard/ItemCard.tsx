@@ -1,9 +1,10 @@
 import { useState, useContext, useEffect } from 'react';
-import { Toaster, toast } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 
 import './ItemCard.css';
 
 import { UserContext } from '../../context/UserContext';
+import { showToast, errorToast } from '../../helpers/toasts';
 import { getListCollaborators, addCollaborator, removeCollaboration } from '../../services/fetch-events';
 import { IListItems, IUserAPI, ISingleEvent } from '../../types/app-types';
 
@@ -26,7 +27,7 @@ export const ItemCard = ({ item, event }: IProps) => {
     });
   }, [item.id]);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     if (userCtx?.userInfo?.id) {
       const isAMember = event.members.map(member => member.user_id).includes(userCtx.userInfo.id);
 
@@ -34,45 +35,43 @@ export const ItemCard = ({ item, event }: IProps) => {
         const isCollaborating = collaborators.map(element => element.id).includes(userCtx.userInfo.id);
 
         if (!isCollaborating) {
-          const newCollaboration = await addCollaborator(item.id, userCtx.userInfo.id, event.id);
-
-          if (newCollaboration) {
-            setCollaborators(prev => [...prev, newCollaboration]);
-            return;
-          }
-
-          toast.error('Could not add your collaboration, try again', {
-            duration: 3000,
-            position: 'top-left',
-            style: { background: '#363636', color: '#fff' },
-          });
-        }
-
-        const newList = await removeCollaboration(item.id, userCtx.userInfo.id);
-
-        if (Array.isArray(newList)) {
-          setCollaborators(newList);
+          void insertCollaborator(userCtx.userInfo.id);
           return;
         }
 
-        toast.error('Error: Collaboration was not removed, try again', {
-          duration: 3000,
-          position: 'top-left',
-          style: { background: '#363636', color: '#fff' },
-        });
+        void deleteCollaboration(userCtx.userInfo.id);
+        return;
       }
 
-      toast('You are not part of this event, please join in!', {
-        duration: 3000,
-        position: 'top-left',
-        style: { background: '#363636', color: '#fff' },
-      });
+      showToast('You are not part of this event, please join in!');
     }
+  };
+
+  const insertCollaborator = async (userId: number) => {
+    const newCollaboration = await addCollaborator(item.id, userId, event.id);
+
+    if (newCollaboration) {
+      setCollaborators(prev => [...prev, newCollaboration]);
+      return;
+    }
+
+    errorToast('Could not add your collaboration, try again');
+  };
+
+  const deleteCollaboration = async (userId: number) => {
+    const newList = await removeCollaboration(item.id, userId);
+
+    if (Array.isArray(newList)) {
+      setCollaborators(newList);
+      return;
+    }
+
+    errorToast('Error: Collaboration was not removed, try again');
   };
 
   return (
     <div>
-      <button type="button" onClick={() => void handleClick()}>
+      <button type="button" onClick={handleClick}>
         <div className="itemCard__container">
           <h2 className="itemCard_title">{item.item_name}</h2>
           <div className="itemCard__collaborator">
