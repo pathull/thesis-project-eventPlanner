@@ -6,7 +6,7 @@ export const chatSocketsEvents = (io: SocketIo) => {
 
     // when client disconnects
     socket.on('disconnect', () => {
-      console.log('User has left');
+      console.log('User had left');
     });
   });
 };

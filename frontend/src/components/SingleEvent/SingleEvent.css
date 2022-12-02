@@ -74,6 +74,7 @@
 .membersList__container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 1.5rem;
   margin: 1.3rem 0;
 }

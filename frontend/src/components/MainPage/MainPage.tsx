@@ -19,8 +19,8 @@ export const MainPage = () => {
 
   if (!Array.isArray(eventList) || eventList.length < 1) {
     return (
-      <div>
-        <h1>No events yet</h1>
+      <div className="noEventContainer">
+        <h1 className="text-2xl font-semibold text-gray-400">No events yet</h1>
       </div>
     );
   }
