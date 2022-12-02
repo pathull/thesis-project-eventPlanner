@@ -21,7 +21,7 @@ export const NavBar = () => {
         </div>
         <nav className="mt-4 flex flex-col gap-4 relative">
           <Link
-            to="/"
+            to="/profile"
             className={`group flex items-center text-sm  gap-3.5 font-medium p-2 hover:bg-slate-500 rounded-md cursor-pointer`}
           >
             <div>

@@ -1,4 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 import './SingleEvent.css';
@@ -40,8 +41,15 @@ export const SingleEvent = (): JSX.Element => {
         <div className="singleEvent__overlay">
           <h1 className="singleEvent__mainTitle">{event.eventName}</h1>
           <div className="singleEvent__info">
-            <p>members: {event.members.length}</p>
-            <Watch time={event.eventDate} />
+            <div className="singleEvent__timerContainer">
+              <p>members: {event.members.length}</p>
+              <Watch time={event.eventDate} />
+            </div>
+            <div className="chatLink__container">
+              <Link to="/chat" className="linkToChat">
+                Join Chat
+              </Link>
+            </div>
           </div>
         </div>
         <div className="singleEvent__details">

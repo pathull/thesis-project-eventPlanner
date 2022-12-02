@@ -10,6 +10,9 @@ import { AddMembers } from './components/AddMembers/AddMembers';
 import { AddListItems } from './components/AddListItems/AddListItems';
 import { SingleEvent } from './components/SingleEvent/SingleEvent';
 import { MainPage } from './components/MainPage/MainPage';
+import { UserProfile } from './components/UserProfile/UserProfile';
+import { EditProfile } from './components/EditProfile/EditProfile';
+import { Chat } from './components/Chat/Chat';
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -25,6 +28,9 @@ function App() {
               <Route path="/add-members" element={<AddMembers />} />
               <Route path="/add-items" element={<AddListItems />} />
               <Route path="/single-event/:eventId" element={<SingleEvent />} />
+              <Route path="/profile" element={<UserProfile />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
+              <Route path="/chat" element={<Chat />} />
             </Routes>
           </div>
           <NavBar />

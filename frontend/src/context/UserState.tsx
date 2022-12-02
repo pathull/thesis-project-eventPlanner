@@ -27,5 +27,5 @@ export const UserState = ({ children }: { children: JSX.Element }) => {
     }
   }, [isAuthenticated, user]);
 
-  return <UserContext.Provider value={{ userInfo }}>{children}</UserContext.Provider>;
+  return <UserContext.Provider value={{ userInfo, setUserInfo }}>{children}</UserContext.Provider>;
 };

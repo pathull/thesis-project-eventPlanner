@@ -5,6 +5,7 @@ import { CurrentEventContext } from '../../context/CurrentEventContext';
 import { ItemInput } from '../ItemInput/ItemInput';
 import { addItemsToEvent } from '../../services/fetch-events';
 import { IDataItems } from '../../types/app-types';
+import { Spinner } from '../Spinner/Spinner';
 
 export const AddListItems = () => {
   const navigate = useNavigate();
@@ -45,8 +46,11 @@ export const AddListItems = () => {
 
   if (loading) {
     return (
-      <div>
-        <h1>Adding Items, please wait...</h1>
+      <div className="containerSpinner">
+        <div className="loadingContainer">
+          <Spinner />
+          <h1 className="text-2xl font-semibold mt-4">Adding items, please wait...</h1>
+        </div>
       </div>
     );
   }

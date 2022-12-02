@@ -1,4 +1,5 @@
 import { ActualFileObject } from 'filepond';
+import React from 'react';
 import { MultiValue } from 'react-select';
 
 export interface IUser {
@@ -23,6 +24,7 @@ export interface ServerErrors {
 
 export interface IUserContext {
   userInfo: IUserAPI | null;
+  setUserInfo: React.Dispatch<IUserAPI>;
 }
 
 export interface IEvents {
@@ -107,4 +109,13 @@ export interface ICollaboratorsList {
   added: boolean;
   member_id: number;
   user: IUserAPI;
+}
+
+export interface IEditUser {
+  email: string;
+  name: string;
+  bio: string;
+  lastName: string;
+  username: string;
+  userPic: ActualFileObject | string;
 }

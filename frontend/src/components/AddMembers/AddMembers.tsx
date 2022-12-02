@@ -8,6 +8,7 @@ import { UserContext } from '../../context/UserContext';
 import { CurrentEventContext } from '../../context/CurrentEventContext';
 import { useUserList } from '../../hooks/useUserList';
 import { addMembersToEvent } from '../../services/fetch-events';
+import { Spinner } from '../Spinner/Spinner';
 
 const animatedComponent = makeAnimated();
 
@@ -45,8 +46,11 @@ export const AddMembers = () => {
 
   if (loading) {
     return (
-      <div>
-        <h1>Adding Members, please wait...</h1>
+      <div className="containerSpinner">
+        <div className="loadingContainer">
+          <Spinner />
+          <h1 className="text-2xl font-semibold mt-4">Adding members, please wait...</h1>
+        </div>
       </div>
     );
   }
