@@ -1,0 +1,28 @@
+.messageContainer__input {
+  padding: 0.3rem 1.5rem;
+  background-color: #2e3033;
+  border-radius: 0px 0px 15px 0px;
+  -webkit-border-radius: 0px 0px 15px 0px;
+  -moz-border-radius: 0px 0px 15px 0px;
+  -ms-border-radius: 0px 0px 15px 0px;
+  -o-border-radius: 0px 0px 15px 0px;
+}
+
+.messageContainer__input > form {
+  border: 1px solid #3e3e3f;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+}
+
+.inputChat__message {
+  flex: 1;
+  background-color: transparent;
+  border: none;
+}
+
+.messageContainer__input > form:hover {
+  border: 1px solid #005cf5;
+}

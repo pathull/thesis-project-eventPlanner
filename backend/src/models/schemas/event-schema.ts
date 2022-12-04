@@ -3,6 +3,7 @@ import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from '../connectionDb';
 import { MemberSchema } from './member-schemas';
 import { ItemListSchema } from './items-schema';
+import { MessageSchema } from './messages-schema';
 import { IEvents } from '../../types/app-types';
 
 export const EventsSchema = sequelize.define<Model<IEvents, Optional<IEvents, 'id'>>>('events', {
@@ -63,6 +64,16 @@ EventsSchema.hasMany(ItemListSchema, {
 });
 
 ItemListSchema.belongsTo(EventsSchema, {
+  foreignKey: 'event_id',
+  targetKey: 'id',
+});
+
+EventsSchema.hasMany(MessageSchema, {
+  foreignKey: 'event_id',
+  sourceKey: 'id',
+});
+
+MessageSchema.belongsTo(EventsSchema, {
   foreignKey: 'event_id',
   targetKey: 'id',
 });

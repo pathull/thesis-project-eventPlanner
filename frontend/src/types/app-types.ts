@@ -1,5 +1,5 @@
 import { ActualFileObject } from 'filepond';
-import React from 'react';
+import { Socket } from 'socket.io-client';
 import { MultiValue } from 'react-select';
 
 export interface IUser {
@@ -37,6 +37,7 @@ export interface IEvents {
   picUrl: string;
   publicPic_id?: string;
   topic: string;
+  members?: Array<IMembersAPI>;
 }
 
 export interface IEventsData {
@@ -118,4 +119,17 @@ export interface IEditUser {
   lastName: string;
   username: string;
   userPic: ActualFileObject | string;
+}
+
+export interface ISocket {
+  socket: Socket | null;
+}
+
+export interface IMessages {
+  id: number;
+  message: string;
+  event_id: number;
+  user_id: number;
+  roomChatId: string;
+  createdAt: Date;
 }

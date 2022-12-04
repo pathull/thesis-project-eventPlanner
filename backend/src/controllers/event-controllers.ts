@@ -11,6 +11,7 @@ import {
   addCollaborator,
   listCollaboratorsPerItem,
   deleteCollaborations,
+  listOfMembers,
 } from '../models/daos/event-daos';
 
 export const createNewEvent = async (req: Request<never, never, IEvents>, res: Response, next: NextFunction) => {
@@ -100,6 +101,17 @@ export const getListCollaborators = async (req: Request<IParamsCollaborator>, re
 export const removeCollaboration = async (req: Request<IParamsCollaborator>, res: Response, next: NextFunction) => {
   try {
     const list = await deleteCollaborations(req.params.itemId, req.params.userId);
+    return res.status(200).json(list);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
+
+export const getListOfMembers = async (req: Request<IParamEvent>, res: Response, next: NextFunction) => {
+  try {
+    const list = await listOfMembers(req.params.eventId);
+
     return res.status(200).json(list);
   } catch (err) {
     console.error(err);

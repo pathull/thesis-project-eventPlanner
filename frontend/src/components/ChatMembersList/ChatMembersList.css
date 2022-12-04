@@ -1,0 +1,4 @@
+.listMembersChat__container {
+  height: 90%;
+  overflow-y: auto;
+}

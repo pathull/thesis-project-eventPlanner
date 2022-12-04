@@ -12,7 +12,11 @@ import { chatSocketsEvents } from '../sockets/chat-socket';
 
 const app: Application = express();
 const server = createServer(app);
-const io = new SocketIo(server);
+const io = new SocketIo(server, {
+  cors: {
+    origin: env.clientAppUrl,
+  },
+});
 
 app.set('port', process.env.PORT || env.dbAppPort);
 

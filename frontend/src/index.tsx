@@ -7,6 +7,7 @@ import './index.css';
 import { env } from './helpers/env';
 import { UserState } from './context/UserState';
 import { CurrentEventState } from './context/CurrentEventState';
+import { SocketState } from './context/SocketState';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -16,7 +17,9 @@ root.render(
     <Auth0Provider domain={env.domain} clientId={env.clientId} redirectUri="http://localhost:3000">
       <UserState>
         <CurrentEventState>
-          <App />
+          <SocketState>
+            <App />
+          </SocketState>
         </CurrentEventState>
       </UserState>
     </Auth0Provider>

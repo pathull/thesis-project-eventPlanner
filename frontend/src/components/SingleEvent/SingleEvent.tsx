@@ -1,18 +1,22 @@
 import { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 import './SingleEvent.css';
 
 import { CurrentEventContext } from '../../context/CurrentEventContext';
+import { UserContext } from '../../context/UserContext';
 import { MemberCard } from '../../components/MemberCard/MemberCard';
 import { ItemCard } from '../../components/ItemCard/ItemCard';
 import { Watch } from '../Watch/Watch';
 import { getSingleEventInfo } from '../../services/fetch-events';
+import { showToast } from '../../helpers/toasts';
 import { ISingleEvent } from '../../types/app-types';
 
 export const SingleEvent = (): JSX.Element => {
+  const navigate = useNavigate();
   const { eventId } = useParams();
+  const userCtx = useContext(UserContext);
   const eventCtx = useContext(CurrentEventContext);
   const [event, setEvent] = useState<ISingleEvent | null>(null);
 
@@ -26,6 +30,18 @@ export const SingleEvent = (): JSX.Element => {
       });
     }
   }, [eventId]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const goToChat = () => {
+    if (userCtx?.userInfo?.id && event?.members && event.members.length > 0) {
+      const isMember = event.members.map(member => member.user_id).includes(userCtx.userInfo.id);
+
+      if (isMember) {
+        navigate('/chat');
+      }
+
+      showToast('You are not part of this event, please join in!');
+    }
+  };
 
   if (!event) {
     return (
@@ -46,9 +62,9 @@ export const SingleEvent = (): JSX.Element => {
               <Watch time={event.eventDate} />
             </div>
             <div className="chatLink__container">
-              <Link to="/chat" className="linkToChat">
+              <button className="linkToChat" onClick={goToChat}>
                 Join Chat
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -85,6 +101,8 @@ export const SingleEvent = (): JSX.Element => {
           )}
         </div>
       </div>
+
+      <Toaster reverseOrder={true} />
     </section>
   );
 };

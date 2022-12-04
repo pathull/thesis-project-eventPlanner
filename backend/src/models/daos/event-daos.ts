@@ -174,3 +174,19 @@ export const deleteCollaborations = async (itemId: string, userId: string) => {
 
   throw new AppErrors({ message: 'Invalid ID', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
 };
+
+export const listOfMembers = async (eventId: string) => {
+  if (checkId(eventId)) {
+    const list = await MemberSchema.findAll({
+      where: { event_id: eventId },
+      include: {
+        model: UserSchema,
+      },
+    });
+
+    const users = list.map(item => item.toJSON().user);
+    return users;
+  }
+
+  throw new AppErrors({ message: 'Invalid ID', httpCode: HttpStatusCode.BAD_REQUEST, code: 3 });
+};

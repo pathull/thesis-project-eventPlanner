@@ -1,5 +1,3 @@
-// import { BelongsToManyAddAssociationMixin, BelongsToManySetAssociationsMixin } from 'sequelize';
-
 export interface IUser {
   id?: number;
   email: string;
@@ -32,8 +30,6 @@ export interface IEvents {
   picUrl?: string;
   publicPic_id?: string;
   topic?: string;
-  // addUserSchema: BelongsToManyAddAssociationMixin<IUser, number>;
-  // setUserSchema: BelongsToManySetAssociationsMixin<IUser, number>;
 }
 
 export interface IMember {
@@ -41,6 +37,7 @@ export interface IMember {
   activeMember?: boolean;
   user_id?: number;
   event_id?: number;
+  user?: Array<IUser>;
 }
 
 interface MultiSelectValues {
@@ -64,4 +61,12 @@ export interface IMemberItems {
   item_id: number;
   member_id: number;
   user?: IUser;
+}
+
+export interface IMessagesEvent {
+  id?: number;
+  message: string;
+  event_id: number;
+  user_id: number;
+  roomChatId: string;
 }

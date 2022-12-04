@@ -154,3 +154,19 @@ export const removeCollaboration = async (itemId: number, userId: number) => {
     console.error(err);
   }
 };
+
+export const retrieveListOfMembers = async (eventId: number) => {
+  try {
+    if (eventId) {
+      const data = await fetch(`${env.baseUrl}/api/events/member-list/${eventId}`, {
+        method: 'GET',
+        mode: 'cors',
+      });
+
+      const users = (await data.json()) as unknown as IUserAPI[];
+      return users;
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
