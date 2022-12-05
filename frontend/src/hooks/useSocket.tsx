@@ -7,15 +7,13 @@
 //   const connectSocket = useCallback(() => {
 //     const socketTemp = connect(serverUrl, {
 //       transports: ['websocket'],
-//       autoConnect: true,
-//       // forceNew: true,
 //     });
 
 //     setSocket(socketTemp);
 //   }, [serverUrl]);
 
 //   const disconnectSocket = useCallback(() => {
-//     socket?.disconnect();
+//     if (socket) socket.disconnect();
 //   }, [socket]);
 
 //   return {

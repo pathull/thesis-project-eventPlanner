@@ -6,6 +6,11 @@
   margin: 0.7rem 0;
 }
 
+.messageContainer__positioning {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .imageMessage__chat {
   height: 30px;
   width: 30px;
@@ -38,6 +43,7 @@
   min-width: 150px;
   display: flex;
   justify-content: flex-end;
+  word-break: break-word;
   background-color: #343434;
   padding: 0.4rem 1.25rem;
   border-radius: 15px 15px 15px 0px;

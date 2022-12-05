@@ -1,9 +1,10 @@
 .mainPage__container {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 1rem;
   width: 100%;
-  gap: 4rem;
+  gap: 2rem;
 }
 
 .noEventContainer {

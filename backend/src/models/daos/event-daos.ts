@@ -37,7 +37,10 @@ export const addNewEvent = async (data: IEvents, picture?: IFileImage) => {
 };
 
 export const getArrayOfEvents = async () => {
-  const allEvents = await EventsSchema.findAll({ attributes: { exclude: ['createdAt', 'updatedAt', 'publicPic_id'] } });
+  const allEvents = await EventsSchema.findAll({
+    attributes: { exclude: ['createdAt', 'updatedAt', 'publicPic_id'] },
+    order: [['eventDate', 'ASC']],
+  });
 
   return allEvents;
 };

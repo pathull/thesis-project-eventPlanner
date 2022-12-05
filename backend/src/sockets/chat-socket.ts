@@ -1,6 +1,6 @@
 import { Server as SocketIo } from 'socket.io';
 
-import { createNewMessage } from '../models/daos/message-daos';
+import { createNewMessage, getListOfMessages } from '../models/daos/message-daos';
 import { IMessagesEvent } from '../types/app-types';
 import { IJoinRoomArgs } from '../types/socket-types';
 
@@ -8,16 +8,20 @@ export const chatSocketsEvents = (io: SocketIo) => {
   io.on('connection', socket => {
     console.log('New Connection!!!', socket.id);
 
-    socket.on('join_room', ({ userId, eventId, roomId }: IJoinRoomArgs) => {
-      socket.join(roomId);
+    socket.on('join_room', async ({ userId, eventId, roomId }: IJoinRoomArgs) => {
       console.log(userId, eventId, roomId);
+      socket.join(roomId);
+
+      const msgs = await getListOfMessages(eventId);
+
+      io.to(roomId).emit('server:all-chats', msgs);
     });
 
     socket.on('client:newIncomingMessage', async (data: IMessagesEvent) => {
       const msg = await createNewMessage(data);
 
       if (msg) {
-        io.to(msg.getDataValue('roomChatId')).emit('server:messageChat', msg);
+        io.to(msg.roomChatId).emit('server:messageChat', msg);
       }
     });
 

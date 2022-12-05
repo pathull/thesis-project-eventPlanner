@@ -57,7 +57,7 @@ export const Chat = () => {
             <p>Gustavo Silva, James, Patrick</p>
           </div>
         </div>
-        <div className="messagesContainer__chats">
+        <div id="chatMsgs" className="messagesContainer__chats">
           <MessageList />
         </div>
         <ChatInput />

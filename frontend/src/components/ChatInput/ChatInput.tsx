@@ -25,6 +25,7 @@ export const ChatInput = () => {
           message,
         };
 
+        console.log(messageData);
         socketCtx.socket.emit('client:newIncomingMessage', messageData);
         setMessage('');
       }

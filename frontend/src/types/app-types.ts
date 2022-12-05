@@ -131,5 +131,6 @@ export interface IMessages {
   event_id: number;
   user_id: number;
   roomChatId: string;
-  createdAt: Date;
+  createdAt: string;
+  user?: IUserAPI;
 }
