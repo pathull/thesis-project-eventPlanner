@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import './MemberCard.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
+import { env } from '../../helpers/env';
 import { IMembersAPI, IUserAPI } from '../../types/app-types';
 import { getSingleUserInfo } from '../../services/fetch-users';
 
@@ -21,8 +24,11 @@ export const MemberCard = ({ member }: { member: IMembersAPI }): JSX.Element => 
       {singleMember ? (
         <div className="memberCard__container">
           <div className="memberContainer__details">
-            <img
+            <LazyLoadImage
+              loading="lazy"
+              effect="blur"
               alt={singleMember.name}
+              placeholderSrc={env.userImgPlaceholder}
               src={
                 singleMember.picUrl !== null
                   ? singleMember.picUrl

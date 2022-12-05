@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import moment from 'moment';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import './EventCard.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
+import { env } from '../../helpers/env';
 import { IEvents } from '../../types/app-types';
 
 interface IProps {
@@ -14,7 +17,16 @@ export const EventCard = ({ event }: IProps) => {
     <div className="eventCard__container">
       <Link to={`/single-event/${event.id}`}>
         <div className="eventCard__bodyInfo">
-          <img alt={event.eventName} src={event.picUrl} className="eventCard__image" />
+          <LazyLoadImage
+            loading="lazy"
+            effect="blur"
+            alt={event.eventName}
+            src={event.picUrl}
+            height={192}
+            width={240}
+            className="eventCard__image"
+            placeholderSrc={env.eventImgPlaceholder}
+          />
           <div className="eventCard__textContainer">
             <h2 className="eventCardText__title">{event.eventName}</h2>
             <p className="eventCardText__date">{moment(event.eventDate).format('LL')}</p>

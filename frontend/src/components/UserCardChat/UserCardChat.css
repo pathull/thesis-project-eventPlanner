@@ -5,7 +5,6 @@
   margin: 1rem 0;
   margin-right: 1rem;
   padding: 0.6rem 0.8rem;
-  background-color: #2c2c30;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
@@ -13,7 +12,16 @@
   -o-border-radius: 15px;
 }
 
-.userCardChat__container > img {
+.userCardChat__container:hover {
+  background-color: #2c2c30;
+  transition: all ease-in-out 0.2s;
+  -webkit-transition: all ease-in-out 0.2s;
+  -moz-transition: all ease-in-out 0.2s;
+  -ms-transition: all ease-in-out 0.2s;
+  -o-transition: all ease-in-out 0.2s;
+}
+
+.userCardChat__container--image {
   width: 45px;
   height: 45px;
   border-radius: 50px;

@@ -42,7 +42,12 @@ export const Chat = () => {
     <section className="chatContainer">
       <div className="memberContainer">
         <div className="memberContainer__topChat">
-          <img src={eventCtx.eventData.picUrl} alt={eventCtx.eventData.eventName} />
+          <img
+            loading="lazy"
+            className="memberContainer__topChat--image"
+            src={eventCtx.eventData.picUrl}
+            alt={eventCtx.eventData.eventName}
+          />
           <h2> Welcome to {eventCtx.eventData.eventName} Chatbox</h2>
         </div>
         <div className="membersChat__container">

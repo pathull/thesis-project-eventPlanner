@@ -1,10 +1,13 @@
 import { useContext } from 'react';
 import { DateTime } from 'luxon';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import './MessageCard.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { UserContext } from '../../context/UserContext';
 import { IMessages } from '../../types/app-types';
+import { env } from '../../helpers/env';
 
 export const MessageCard = ({ msg }: { msg: IMessages }) => {
   const userCtx = useContext(UserContext);
@@ -15,7 +18,16 @@ export const MessageCard = ({ msg }: { msg: IMessages }) => {
         <div className={`${userCtx.userInfo.id === msg.user.id ? 'messageContainer__positioning' : ''}`}>
           <div className="messageInfo__container">
             {userCtx.userInfo.id !== msg.user.id ? (
-              <img className="imageMessage__chat" src={msg.user.picUrl} alt={msg.user.name} />
+              <LazyLoadImage
+                effect="blur"
+                height={30}
+                width={30}
+                loading="lazy"
+                className="imageMessage__chat"
+                src={msg.user.picUrl}
+                alt={msg.user.name}
+                placeholderSrc={env.userImgPlaceholder}
+              />
             ) : null}
             <div className="messageDetails__chat">
               <div className={`chatDetails__msg ${userCtx.userInfo.id === msg.user.id ? 'myMessages__container' : ''}`}>
@@ -29,7 +41,16 @@ export const MessageCard = ({ msg }: { msg: IMessages }) => {
               </div>
             </div>
             {userCtx.userInfo.id === msg.user.id ? (
-              <img className="imageMessage__chat" src={msg.user.picUrl} alt={msg.user.name} />
+              <LazyLoadImage
+                effect="blur"
+                height={30}
+                width={30}
+                loading="lazy"
+                className="imageMessage__chat"
+                src={msg.user.picUrl}
+                alt={msg.user.name}
+                placeholderSrc={env.userImgPlaceholder}
+              />
             ) : null}
           </div>
         </div>

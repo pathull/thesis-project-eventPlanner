@@ -15,7 +15,6 @@ export const MessageList = (): JSX.Element => {
     const getListMsgs = (data: IMessages[]) => {
       if (data) {
         setListMessages(data);
-        scrollToBottomAnimated('chatMsgs');
       }
     };
 
@@ -41,9 +40,9 @@ export const MessageList = (): JSX.Element => {
     };
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  return (
-    // <div className="chatList__container">
-    <>{listMessages.length > 0 ? listMessages.map(msg => <MessageCard key={msg.id} msg={msg} />) : null}</>
-    // </div>
-  );
+  useEffect(() => {
+    scrollToBottomAnimated('chatMsgs');
+  }, [listMessages]);
+
+  return <>{listMessages.length > 0 ? listMessages.map(msg => <MessageCard key={msg.id} msg={msg} />) : null}</>;
 };

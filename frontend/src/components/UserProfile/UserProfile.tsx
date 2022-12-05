@@ -1,11 +1,14 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
 
 import './UserProfile.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { UserContext } from '../../context/UserContext';
+import { env } from '../../helpers/env';
 
 export const UserProfile = (): JSX.Element | null => {
   const userCtx = useContext(UserContext);
@@ -18,7 +21,16 @@ export const UserProfile = (): JSX.Element | null => {
     <div className="profile-container">
       <div className="profile-details-container">
         <div className="image-username">
-          <img alt="event" src={userCtx.userInfo.picUrl} className="profile__image" />
+          <LazyLoadImage
+            loading="lazy"
+            effect="blur"
+            alt={userCtx.userInfo.name}
+            src={userCtx.userInfo.picUrl}
+            className="profile__image"
+            height={325}
+            width={325}
+            placeholderSrc={env.userImgPlaceholder}
+          />
           <h2 className="profile__username">{userCtx.userInfo.username}</h2>
         </div>
         <div className="profile-text-container">
