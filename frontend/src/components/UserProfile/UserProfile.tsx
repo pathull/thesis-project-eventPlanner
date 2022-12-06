@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
+import { CalendarProfile } from '../Calendar/Calendar';
 
 import './UserProfile.css';
 
@@ -47,6 +48,7 @@ export const UserProfile = (): JSX.Element | null => {
           </div>
         </div>
       </div>
+      <CalendarProfile />
     </div>
   );
 };
