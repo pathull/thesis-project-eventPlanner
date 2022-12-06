@@ -140,3 +140,9 @@ export interface IErrorSockets {
   error: boolean;
   code: number;
 }
+export interface CalendarEvent {
+  title: string;
+  start: Date;
+  end: Date;
+  allDay?: boolean;
+}

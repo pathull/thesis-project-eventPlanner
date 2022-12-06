@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Button from '@mui/material/Button';
 import EditIcon from '@mui/icons-material/Edit';
+import { CalendarProfile } from '../Calendar/Calendar';
 
 import './UserProfile.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -59,6 +60,7 @@ export const UserProfile = (): JSX.Element | null => {
           </div>
         </div>
       </div>
+      <CalendarProfile />
     </div>
   );
 };
