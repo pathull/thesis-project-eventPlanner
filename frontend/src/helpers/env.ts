@@ -5,5 +5,5 @@ export const env = {
   eventImgPlaceholder: process.env.REACT_LOADING_IMAGE_PLACEHOLDER,
   userImgPlaceholder: process.env.REACT_IMAGE_PLACEHOLDER_USER,
   googleSecretKey: process.env.REACT_APP_GOOGLE_API_KEY as string,
-  // baseUrl: 'http://localhost:8080',
+  calendarId: process.env.REACT_APP_CALENDAR_CLIENT_ID as string,
 };
