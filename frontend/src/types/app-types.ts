@@ -134,3 +134,9 @@ export interface IMessages {
   createdAt: string;
   user?: IUserAPI;
 }
+
+export interface IErrorSockets {
+  message: string;
+  error: boolean;
+  code: number;
+}

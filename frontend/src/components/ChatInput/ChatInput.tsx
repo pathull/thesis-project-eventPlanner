@@ -6,6 +6,7 @@ import './ChatInput.css';
 import { SocketContext } from '../../context/SocketContext';
 import { UserContext } from '../../context/UserContext';
 import { CurrentEventContext } from '../../context/CurrentEventContext';
+import { IErrorSockets } from '../../types/app-types';
 
 export const ChatInput = () => {
   const userCtx = useContext(UserContext);
@@ -25,8 +26,9 @@ export const ChatInput = () => {
           message,
         };
 
-        console.log(messageData);
-        socketCtx.socket.emit('client:newIncomingMessage', messageData);
+        socketCtx.socket.emit('client:newIncomingMessage', messageData, (err: IErrorSockets) => {
+          if (err.message) alert(`Error ${err.message}`); //FIXME: change the alert
+        });
         setMessage('');
       }
 

@@ -28,7 +28,6 @@ export const MessageList = (): JSX.Element => {
   useEffect(() => {
     const receiveNewMsg = (data: IMessages) => {
       if (data) {
-        console.log(data);
         setListMessages(msgs => [...msgs, data]);
       }
     };

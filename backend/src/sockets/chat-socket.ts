@@ -17,17 +17,22 @@ export const chatSocketsEvents = (io: SocketIo) => {
       io.to(roomId).emit('server:all-chats', msgs);
     });
 
-    socket.on('client:newIncomingMessage', async (data: IMessagesEvent) => {
+    socket.on('client:leave-room', (roomId: string) => {
+      socket.leave(roomId);
+    });
+
+    socket.on('client:newIncomingMessage', async (data: IMessagesEvent, callback) => {
       const msg = await createNewMessage(data);
 
       if (msg) {
-        io.to(msg.roomChatId).emit('server:messageChat', msg);
+        io.to(data.roomChatId).emit('server:messageChat', msg);
+        callback();
       }
     });
 
     // when client disconnects
     socket.on('disconnect', () => {
-      console.log('User had left');
+      console.log(`User ${socket.id} had left`);
     });
   });
 };

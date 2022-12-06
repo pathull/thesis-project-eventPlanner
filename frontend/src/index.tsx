@@ -16,11 +16,11 @@ root.render(
   <React.StrictMode>
     <Auth0Provider domain={env.domain} clientId={env.clientId} redirectUri="http://localhost:3000">
       <UserState>
-        <CurrentEventState>
-          <SocketState>
+        <SocketState>
+          <CurrentEventState>
             <App />
-          </SocketState>
-        </CurrentEventState>
+          </CurrentEventState>
+        </SocketState>
       </UserState>
     </Auth0Provider>
   </React.StrictMode>

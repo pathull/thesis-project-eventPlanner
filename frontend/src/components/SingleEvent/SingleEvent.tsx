@@ -6,6 +6,7 @@ import './SingleEvent.css';
 
 import { CurrentEventContext } from '../../context/CurrentEventContext';
 import { UserContext } from '../../context/UserContext';
+import { SocketContext } from '../../context/SocketContext';
 import { MemberCard } from '../../components/MemberCard/MemberCard';
 import { ItemCard } from '../../components/ItemCard/ItemCard';
 import { Watch } from '../Watch/Watch';
@@ -18,6 +19,7 @@ export const SingleEvent = (): JSX.Element => {
   const { eventId } = useParams();
   const userCtx = useContext(UserContext);
   const eventCtx = useContext(CurrentEventContext);
+  const socketCtx = useContext(SocketContext);
   const [event, setEvent] = useState<ISingleEvent | null>(null);
 
   useEffect(() => {
@@ -36,7 +38,15 @@ export const SingleEvent = (): JSX.Element => {
       const isMember = event.members.map(member => member.user_id).includes(userCtx.userInfo.id);
 
       if (isMember) {
-        navigate('/chat');
+        if (eventCtx?.eventData?.id) {
+          socketCtx?.socket?.emit('join_room', {
+            userId: userCtx.userInfo.id,
+            eventId: eventCtx.eventData.id,
+            roomId: `${eventCtx.eventData.eventName}-${eventCtx.eventData.id}`,
+          });
+
+          navigate('/chat');
+        }
       }
 
       showToast('You are not part of this event, please join in!');

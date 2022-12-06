@@ -1,34 +1,14 @@
-import { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
 
 import './Chat.css';
 
-import { UserContext } from '../../context/UserContext';
 import { CurrentEventContext } from '../../context/CurrentEventContext';
-import { SocketContext } from '../../context/SocketContext';
 import { ChatMembersList } from '../ChatMembersList/ChatMembersList';
 import { ChatInput } from '../ChatInput/ChatInput';
 import { MessageList } from '../MessagesList/MessageList';
 
 export const Chat = () => {
-  const navigate = useNavigate();
-  const userCtx = useContext(UserContext);
   const eventCtx = useContext(CurrentEventContext);
-  const socketCtx = useContext(SocketContext);
-
-  useEffect(() => {
-    if (socketCtx?.socket && userCtx?.userInfo?.id && eventCtx?.eventData?.id) {
-      socketCtx.socket.emit('join_room', {
-        userId: userCtx.userInfo.id,
-        eventId: eventCtx.eventData.id,
-        roomId: `${eventCtx.eventData.eventName}-${eventCtx.eventData.id}`,
-      });
-
-      return;
-    }
-
-    navigate('/');
-  }, [socketCtx, eventCtx, userCtx, navigate]);
 
   if (!eventCtx || eventCtx.eventData === null) {
     return (
