@@ -8,7 +8,7 @@ import './UserProfile.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { UserContext } from '../../context/UserContext';
-import { CalendarProfile } from '../Calendar/Calendar';
+import { CalendarProfile } from '../CalendarProfile/CalendarProfile';
 import { env } from '../../helpers/env';
 
 export const UserProfile = (): JSX.Element | null => {

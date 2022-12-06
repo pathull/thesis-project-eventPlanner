@@ -141,7 +141,7 @@ export interface IErrorSockets {
   code: number;
 }
 
-export interface CalendarEvent {
+export interface ICalendarEvent {
   title: string;
   start: Date;
   end: Date;

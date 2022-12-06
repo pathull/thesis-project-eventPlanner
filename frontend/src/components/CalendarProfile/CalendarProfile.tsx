@@ -11,7 +11,7 @@ import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 import { retrieveAllListOfEvents } from '../../services/fetch-events';
-import { CalendarEvent } from '../../types/app-types';
+import { ICalendarEvent } from '../../types/app-types';
 
 const locales = {
   'en-US': enUS,
@@ -28,7 +28,7 @@ const localizer = dateFnsLocalizer({
 });
 
 export const CalendarProfile = (): JSX.Element => {
-  const [events, setEvents] = useState<CalendarEvent[]>([]);
+  const [events, setEvents] = useState<ICalendarEvent[]>([]);
 
   const getEvents = async () => {
     const response = await retrieveAllListOfEvents();
