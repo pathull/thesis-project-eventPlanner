@@ -27,7 +27,7 @@ export const ChatInput = () => {
         };
 
         socketCtx.socket.emit('client:newIncomingMessage', messageData, (err: IErrorSockets) => {
-          if (err.message) alert(`Error ${err.message}`); //FIXME: change the alert
+          if (err) alert(`Error ${err.message}`); //FIXME: change the alert
         });
         setMessage('');
       }
