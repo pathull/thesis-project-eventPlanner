@@ -6,15 +6,19 @@ import startOfWeek from 'date-fns/startOfWeek';
 import getDay from 'date-fns/getDay';
 import enUS from 'date-fns/locale/en-US';
 import addMinutes from 'date-fns/addMinutes';
-import { retrieveAllListOfEvents } from '../../services/fetch-events';
-import { CalendarEvent } from '../../types/app-types';
+
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+
+import { retrieveAllListOfEvents } from '../../services/fetch-events';
+import { CalendarEvent } from '../../types/app-types';
 
 const locales = {
   'en-US': enUS,
 };
+
 const endOfHour = (date: Date): Date => addMinutes(date, 60);
+
 const localizer = dateFnsLocalizer({
   format,
   parse,
