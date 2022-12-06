@@ -10,7 +10,7 @@ import { Spinner } from '../Spinner/Spinner';
 export const AddListItems = () => {
   const navigate = useNavigate();
   const eventCtx = useContext(CurrentEventContext);
-  const [itemNumber, setItemNumber] = useState<Array<number>>([1]);
+  const [itemNumber, setItemNumber] = useState([1]);
   const [itemList, setItemList] = useState<Array<IDataItems>>([]);
   const [loading, setLoading] = useState(false);
   const countRef = useRef(1);
@@ -37,7 +37,7 @@ export const AddListItems = () => {
           navigate('/');
         } else {
           setLoading(false);
-          alert('Possible Error'); //TODO change the alert using sweet alert
+          alert('Possible Error'); //TODO: change the alert using sweet alert
           navigate('/');
         }
       }

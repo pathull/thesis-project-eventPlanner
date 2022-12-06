@@ -14,7 +14,7 @@ interface IProps {
 
 export const EventCard = ({ event }: IProps) => {
   return (
-    <div className="eventCard__container">
+    <div className="eventCard__container" data-testid="eventCardsArray">
       <Link to={`/single-event/${event.id}`}>
         <div className="eventCard__bodyInfo">
           <LazyLoadImage
