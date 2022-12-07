@@ -15,7 +15,10 @@ export const MessageCard = ({ msg }: { msg: IMessages }) => {
   return (
     <>
       {msg.user && userCtx?.userInfo ? (
-        <div className={`${userCtx.userInfo.id === msg.user.id ? 'messageContainer__positioning' : ''}`}>
+        <div
+          data-testid="messageItem"
+          className={`${userCtx.userInfo.id === msg.user.id ? 'messageContainer__positioning' : ''}`}
+        >
           <div className="messageInfo__container">
             {userCtx.userInfo.id !== msg.user.id ? (
               <LazyLoadImage

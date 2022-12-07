@@ -51,6 +51,7 @@ export const EventsSchema = sequelize.define<Model<IEvents, Optional<IEvents, 'i
 EventsSchema.hasMany(MemberSchema, {
   foreignKey: 'event_id',
   sourceKey: 'id',
+  onDelete: 'CASCADE',
 });
 
 MemberSchema.belongsTo(EventsSchema, {
@@ -61,6 +62,7 @@ MemberSchema.belongsTo(EventsSchema, {
 EventsSchema.hasMany(ItemListSchema, {
   foreignKey: 'event_id',
   sourceKey: 'id',
+  onDelete: 'CASCADE',
 });
 
 ItemListSchema.belongsTo(EventsSchema, {
@@ -71,6 +73,7 @@ ItemListSchema.belongsTo(EventsSchema, {
 EventsSchema.hasMany(MessageSchema, {
   foreignKey: 'event_id',
   sourceKey: 'id',
+  onDelete: 'CASCADE',
 });
 
 MessageSchema.belongsTo(EventsSchema, {

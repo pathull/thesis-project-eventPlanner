@@ -87,6 +87,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "mock-socket": "^9.1.5",
     "msw": "^0.49.1",
     "nock": "^13.2.9",
     "postcss": "^8.4.19",
