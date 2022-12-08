@@ -1,8 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Toaster } from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Login } from './components/Login/Login';
 import { NavBar } from './components/NavBar/NavBar';
@@ -35,8 +36,7 @@ function App() {
             </Routes>
           </div>
           <NavBar />
-
-          <Toaster reverseOrder={true} />
+          <ToastContainer />
         </div>
       </BrowserRouter>
     );

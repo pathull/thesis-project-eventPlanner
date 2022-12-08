@@ -1,17 +1,27 @@
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 export const showToast = (msg: string) => {
   toast(msg, {
-    duration: 3000,
     position: 'top-left',
-    style: { background: '#363636', color: '#fff' },
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark',
   });
 };
 
 export const errorToast = (msg: string) => {
   toast.error(msg, {
-    duration: 3000,
     position: 'top-left',
-    style: { background: '#363636', color: '#fff' },
+    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: 'dark',
   });
 };

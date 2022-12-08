@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-// import { Toaster } from 'react-hot-toast';
 
 import './SingleEvent.css';
 
@@ -46,6 +45,7 @@ export const SingleEvent = (): JSX.Element => {
           });
 
           navigate('/chat');
+          return;
         }
       }
 
@@ -111,8 +111,6 @@ export const SingleEvent = (): JSX.Element => {
           )}
         </div>
       </div>
-
-      {/* <Toaster reverseOrder={true} /> */}
     </section>
   );
 };
