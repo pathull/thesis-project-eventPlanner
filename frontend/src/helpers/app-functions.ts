@@ -24,3 +24,9 @@ export const getHourDate = (date: string) => DateTime.fromISO(date).toLocaleStri
 export const relativeTime = (date: string) => moment(date).endOf('day').fromNow();
 
 //? Add 2 hours to get end date by default
+export const defaultEndDate = (date: string) => {
+  const time = new Date(date).getTime();
+  const endTime = time + 2 * 60 * 60 * 1000;
+
+  return new Date(endTime);
+};
