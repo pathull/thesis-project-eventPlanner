@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import './ChatMembersList.css';
-
 import { UserCardChat } from '../UserCardChat/UserCardChat';
 import { retrieveListOfMembers } from '../../services/fetch-events';
 import { IEvents, IUserAPI } from '../../types/app-types';

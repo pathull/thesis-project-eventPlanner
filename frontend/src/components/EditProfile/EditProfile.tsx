@@ -104,6 +104,7 @@ export const EditProfile = () => {
           </div>
           <div className="formControl__createEvent">
             <input
+              data-testid="inputElement__editProfile"
               className="formInput__event focus:ring-0"
               type="text"
               id="firstNameInput"
@@ -118,6 +119,7 @@ export const EditProfile = () => {
           </div>
           <div className="formControl__createEvent">
             <input
+              data-testid="inputElement__editProfile"
               className="formInput__event focus:ring-0"
               type="text"
               id="lastNameInput"
@@ -133,6 +135,7 @@ export const EditProfile = () => {
 
           <div className="formControl__createEvent">
             <input
+              data-testid="inputElement__editProfile"
               className="formInput__event focus:ring-0"
               type="text"
               id="profileUsername"
@@ -147,6 +150,7 @@ export const EditProfile = () => {
           </div>
           <div className="formControl__createEvent">
             <textarea
+              data-testid="textareaElement__editProfile"
               className="formInput__event noResizeTextArea focus:ring-0"
               name="bio"
               value={state.bio}
@@ -159,7 +163,7 @@ export const EditProfile = () => {
             </label>
           </div>
           <div className="formContainer__btn">
-            <button type="submit" className="submitButton__newEvent">
+            <button type="submit" data-testid="btnEditProfile" className="submitButton__newEvent">
               Save Profile
             </button>
           </div>

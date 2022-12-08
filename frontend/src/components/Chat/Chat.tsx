@@ -28,7 +28,7 @@ export const Chat = () => {
             src={eventCtx.eventData.picUrl}
             alt={eventCtx.eventData.eventName}
           />
-          <h2> Welcome to {eventCtx.eventData.eventName} Chatbox</h2>
+          <h2>Welcome to {eventCtx.eventData.eventName} Chatbox</h2>
         </div>
         <div className="membersChat__container">
           <h3>Members:</h3>

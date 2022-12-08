@@ -1,7 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { ToastContainer } from 'react-toastify';
 
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Login } from './components/Login/Login';
 import { NavBar } from './components/NavBar/NavBar';
@@ -34,18 +36,19 @@ function App() {
             </Routes>
           </div>
           <NavBar />
+          <ToastContainer />
         </div>
       </BrowserRouter>
     );
-  } else {
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
-    );
   }
+
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

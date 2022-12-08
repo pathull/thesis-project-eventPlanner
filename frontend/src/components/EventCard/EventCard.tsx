@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
-import moment from 'moment';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import './EventCard.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { env } from '../../helpers/env';
+import { fullTimeDate, getHourDate, relativeTime } from '../../helpers/app-functions';
 import { IEvents } from '../../types/app-types';
 
 interface IProps {
@@ -14,7 +14,7 @@ interface IProps {
 
 export const EventCard = ({ event }: IProps) => {
   return (
-    <div className="eventCard__container">
+    <div className="eventCard__container" data-testid="eventCardsArray">
       <Link to={`/single-event/${event.id}`}>
         <div className="eventCard__bodyInfo">
           <LazyLoadImage
@@ -29,9 +29,9 @@ export const EventCard = ({ event }: IProps) => {
           />
           <div className="eventCard__textContainer">
             <h2 className="eventCardText__title">{event.eventName}</h2>
-            <p className="eventCardText__date">{moment(event.eventDate).format('LL')}</p>
-            <p className="eventCardText__time">{moment(event.eventDate).format('LT')}</p>
-            <p className="eventCardText__countdown">Starts {moment(event.eventDate).endOf('day').fromNow()}</p>
+            <p className="eventCardText__date">{fullTimeDate(event.eventDate)}</p>
+            <p className="eventCardText__time">{getHourDate(event.eventDate)}</p>
+            <p className="eventCardText__countdown">Starts {relativeTime(event.eventDate)}</p>
           </div>
         </div>
       </Link>

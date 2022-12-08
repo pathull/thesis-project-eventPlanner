@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { DateTime } from 'luxon';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import './MessageCard.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { UserContext } from '../../context/UserContext';
+import { getHourDate } from '../../helpers/app-functions';
 import { IMessages } from '../../types/app-types';
 import { env } from '../../helpers/env';
 
@@ -15,7 +15,10 @@ export const MessageCard = ({ msg }: { msg: IMessages }) => {
   return (
     <>
       {msg.user && userCtx?.userInfo ? (
-        <div className={`${userCtx.userInfo.id === msg.user.id ? 'messageContainer__positioning' : ''}`}>
+        <div
+          data-testid="messageItem"
+          className={`${userCtx.userInfo.id === msg.user.id ? 'messageContainer__positioning' : ''}`}
+        >
           <div className="messageInfo__container">
             {userCtx.userInfo.id !== msg.user.id ? (
               <LazyLoadImage
@@ -37,7 +40,7 @@ export const MessageCard = ({ msg }: { msg: IMessages }) => {
                 <span>
                   {msg.user.name} {msg.user.lastName ? msg.user.lastName : null}
                 </span>
-                <span>{DateTime.fromISO(msg.createdAt).toLocaleString(DateTime.TIME_SIMPLE)}</span>
+                <span>{getHourDate(msg.createdAt)}</span>
               </div>
             </div>
             {userCtx.userInfo.id === msg.user.id ? (

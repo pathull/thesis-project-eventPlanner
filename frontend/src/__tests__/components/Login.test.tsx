@@ -1,15 +1,12 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { StaticRouter } from 'react-router-dom/server';
-import { useAuth0, User } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import { Login } from '../../components/Login/Login';
+import { MockedUserAuth0 } from '../../types/test-types';
 
 jest.mock('@auth0/auth0-react');
-
-interface MockedUserAuth0 extends User {
-  mockReturnValue: jest.Mock;
-}
 
 describe('Login Process using Auth0', () => {
   test('User should login in or sign up to access the web app', () => {

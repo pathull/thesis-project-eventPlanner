@@ -5,3 +5,5 @@ README.md
 tailwind.config.js
 postcss.config.js
 .env
+cypress
+cypress.config.ts

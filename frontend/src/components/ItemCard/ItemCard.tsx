@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from 'react';
-import { Toaster } from 'react-hot-toast';
 
 import './ItemCard.css';
 
@@ -90,8 +89,6 @@ export const ItemCard = ({ item, event }: IProps) => {
           </div>
         </div>
       </button>
-
-      <Toaster reverseOrder={true} />
     </div>
   );
 };

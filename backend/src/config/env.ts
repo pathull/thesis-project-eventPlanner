@@ -12,7 +12,7 @@ const env = {
   cloudSecretKey: process.env.CLOUDINARY_SECRET_KEY,
 };
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'testing') {
   env.dbDataBaseName = process.env.DB_SQL_DATABASENAME_TESTS as string;
   env.dbAppPort = Number(process.env.PORT_TESTS);
 }

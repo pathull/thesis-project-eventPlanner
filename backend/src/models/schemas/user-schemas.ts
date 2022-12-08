@@ -65,6 +65,7 @@ EventsSchema.belongsTo(UserSchema, {
 UserSchema.hasMany(MemberSchema, {
   foreignKey: 'user_id',
   sourceKey: 'id',
+  onDelete: 'CASCADE',
 });
 
 MemberSchema.belongsTo(UserSchema, {
@@ -75,6 +76,7 @@ MemberSchema.belongsTo(UserSchema, {
 UserSchema.hasMany(MemberItemsSchema, {
   foreignKey: 'member_id',
   sourceKey: 'id',
+  onDelete: 'CASCADE',
 });
 
 MemberItemsSchema.belongsTo(UserSchema, {
@@ -85,6 +87,7 @@ MemberItemsSchema.belongsTo(UserSchema, {
 UserSchema.hasMany(MessageSchema, {
   foreignKey: 'user_id',
   sourceKey: 'id',
+  onDelete: 'CASCADE',
 });
 
 MessageSchema.belongsTo(UserSchema, {

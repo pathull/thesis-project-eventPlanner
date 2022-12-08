@@ -27,6 +27,7 @@ export const ItemListSchema = sequelize.define<Model<IListItems, Optional<IListI
 ItemListSchema.hasMany(MemberItemsSchema, {
   foreignKey: 'item_id',
   sourceKey: 'id',
+  onDelete: 'CASCADE',
 });
 
 MemberItemsSchema.belongsTo(ItemListSchema, {
