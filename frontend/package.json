@@ -43,7 +43,8 @@
     "eject": "react-scripts eject",
     "format:client": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "format:check-client": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint:client": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet"
+    "lint:client": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --quiet",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -79,6 +80,7 @@
     "@typescript-eslint/eslint-plugin": "^5.44.0",
     "@typescript-eslint/parser": "^5.44.0",
     "autoprefixer": "^10.4.13",
+    "cypress": "^12.0.1",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-typescript": "^3.5.2",

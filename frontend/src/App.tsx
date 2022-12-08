@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Toaster } from 'react-hot-toast';
 
 import './App.css';
 
@@ -34,6 +35,8 @@ function App() {
             </Routes>
           </div>
           <NavBar />
+
+          <Toaster reverseOrder={true} />
         </div>
       </BrowserRouter>
     );

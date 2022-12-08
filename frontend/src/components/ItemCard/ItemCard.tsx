@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { Toaster } from 'react-hot-toast';
+// import { Toaster } from 'react-hot-toast';
 
 import './ItemCard.css';
 
@@ -91,7 +91,7 @@ export const ItemCard = ({ item, event }: IProps) => {
         </div>
       </button>
 
-      <Toaster reverseOrder={true} />
+      {/* <Toaster reverseOrder={true} /> */}
     </div>
   );
 };
