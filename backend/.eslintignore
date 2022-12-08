@@ -4,3 +4,5 @@ coverage
 .env
 husky
 .vscode
+jest.config.js
+__tests__
