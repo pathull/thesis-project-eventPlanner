@@ -11,7 +11,9 @@
     "build": "tsc",
     "start:production": "npm run build && node .",
     "clean": "rmdir dist",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "Typescript",
@@ -19,9 +21,13 @@
     "SQL",
     "REST API",
     "SEQUELIZE",
-    "POSTGRES"
+    "POSTGRES",
+    "JEST",
+    "SOCKET.IO",
+    "CLOUDINARY",
+    "MULTER"
   ],
-  "author": "Gustavo Silva / James Warnsby / Patrick Hull",
+  "author": "Gustavo Silva<gustavo.silva.nav@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "cloudinary": "^1.32.0",

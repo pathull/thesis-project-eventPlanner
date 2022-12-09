@@ -1,7 +1,8 @@
 import { useState, useContext, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import { CurrentEventContext } from '../../context/CurrentEventContext';
+import { errorToast, showToast } from '../../helpers/toasts';
 import { ItemInput } from '../ItemInput/ItemInput';
 import { addItemsToEvent } from '../../services/fetch-events';
 import { IDataItems } from '../../types/app-types';
@@ -22,10 +23,11 @@ export const AddListItems = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    console.log(itemList);
 
     if (eventCtx?.eventData?.id) {
       if (Array.isArray(itemList) && itemList.length > 0) {
+        setLoading(true);
         const data = {
           items: itemList,
         };
@@ -35,13 +37,21 @@ export const AddListItems = () => {
         if (Array.isArray(result) && result.length > 0) {
           setLoading(false);
           navigate('/');
-        } else {
-          setLoading(false);
-          alert('Possible Error'); //TODO: change the alert using sweet alert
-          navigate('/');
+          return;
         }
+
+        setLoading(false);
+        errorToast('Error adding your list of items, you will be redirected');
+        navigate('/');
+        return;
       }
+
+      showToast('Need to add at least one item');
+      return;
     }
+
+    errorToast('Event must be created first');
+    navigate('/create-event');
   };
 
   if (loading) {
@@ -60,15 +70,22 @@ export const AddListItems = () => {
       <h1 className="createEventTitle">Step 3, Add items to the event</h1>
 
       <div className="createEventCard">
-        <button type="button" className="text-blue-700" onClick={handleCounter}>
+        <div className="skippingLink">
+          <Link to="/">Skip step, add items later!</Link>
+        </div>
+        <button type="button" className="text-[#008294]" onClick={handleCounter}>
           Add new item
         </button>
         <form className="formContainer__createEvent mt-5" onSubmit={e => void handleSubmit(e)}>
           {itemNumber.map(el => (
-            <ItemInput key={el} id={el} setItemList={setItemList} />
+            <ItemInput key={el} id={el} setItemList={setItemList} setItemNumber={setItemNumber} />
           ))}
           <div className="formContainer__btn">
-            <button type="submit" className="submitButton__newEvent">
+            <button
+              type="submit"
+              className={`submitButton__newEvent ${itemList.length < 1 ? 'cursor-not-allowed' : ''}`}
+              disabled={itemList.length < 1}
+            >
               Add items
             </button>
           </div>

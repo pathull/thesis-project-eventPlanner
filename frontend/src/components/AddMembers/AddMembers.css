@@ -1,0 +1,25 @@
+.skippingLink {
+  color: #008294;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.skippingLink > a:hover {
+  text-decoration: underline !important;
+}
+
+.warningText__members {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: red;
+  font-size: 0.9rem;
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 0.5rem;
+}
+
+.activeMemberList {
+  opacity: 0;
+}

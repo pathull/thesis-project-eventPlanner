@@ -1,9 +1,13 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Select, { MultiValue } from 'react-select';
 import makeAnimated from 'react-select/animated';
+import { RiErrorWarningFill } from 'react-icons/ri';
+
+import './AddMembers.css';
 
 import { IOptionsForMembers } from '../../types/app-types';
+import { errorToast, showToast } from '../../helpers/toasts';
 import { UserContext } from '../../context/UserContext';
 import { CurrentEventContext } from '../../context/CurrentEventContext';
 import { useUserList } from '../../hooks/useUserList';
@@ -22,10 +26,11 @@ export const AddMembers = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
 
     if (userCtx?.userInfo?.id && eventCtx?.eventData?.id) {
       if (allMembers.length > 0) {
+        setLoading(true);
+
         const info = {
           members: allMembers,
         };
@@ -35,13 +40,21 @@ export const AddMembers = () => {
         if (res && res.length > 0) {
           setLoading(false);
           navigate('/add-items');
-        } else {
-          setLoading(false);
-          alert('Possible Error'); //TODO change the alert using sweet alert
-          navigate('/');
+          return;
         }
+
+        setLoading(false);
+        errorToast('Error adding members, please wait you will be redirected');
+        navigate('/');
+        return;
       }
+
+      showToast('Need to add members before submit');
+      return;
     }
+
+    errorToast('Event must be created first');
+    navigate('/create-event');
   };
 
   if (loading) {
@@ -59,8 +72,11 @@ export const AddMembers = () => {
     <section className="createEventContainer">
       <h1 className="createEventTitle">Step 2 - Add Members to the Event</h1>
       <div className="createEventCard">
-        <form className="formContainer__createEvent" onSubmit={e => void handleSubmit(e)}>
-          <div className="formControl__createEvent">
+        <div className="skippingLink">
+          <Link to="/add-items">Skip step, add members later!</Link>
+        </div>
+        <form className="formContainer__createEvent marginMember" onSubmit={e => void handleSubmit(e)}>
+          <div className="formControl__createEvent pt-4">
             <Select
               isMulti
               isClearable={true}
@@ -68,13 +84,22 @@ export const AddMembers = () => {
               isSearchable={true}
               onChange={item => setAllMembers(item as unknown as MultiValue<IOptionsForMembers[]>)}
               isDisabled={false}
-              isLoading={status === 'loaded' ? false : true}
+              isLoading={status === 'loading' ? true : false}
               closeMenuOnSelect={false}
               components={animatedComponent}
             />
+
+            <div className={`warningText__members ${lists.length > 0 ? 'activeMemberList' : ''}`}>
+              <RiErrorWarningFill />
+              <p>No members at the moment, you can invite them later</p>
+            </div>
           </div>
           <div className="formContainer__btn">
-            <button type="submit" className="submitButton__newEvent">
+            <button
+              type="submit"
+              className={`submitButton__newEvent ${lists.length < 1 ? 'cursor-not-allowed' : ''}`}
+              disabled={lists.length < 1}
+            >
               Add Members
             </button>
           </div>

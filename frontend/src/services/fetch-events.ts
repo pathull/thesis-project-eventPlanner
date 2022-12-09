@@ -4,10 +4,10 @@ import {
   IEvents,
   IDataMembers,
   IMembersAPI,
-  IDataItems,
   IListItems,
   ISingleEvent,
   IUserAPI,
+  IDataItems,
 } from '../types/app-types';
 
 export const createNewEvent = async (data: IEventsData) => {

@@ -15,7 +15,13 @@
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 0.7rem
+  margin-bottom: 0.7rem;
+  word-break: break-word;
+  display: -webkit-box;
+  width: 100%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .itemCard__container:hover {
@@ -27,7 +33,7 @@
 }
 
 .collaboratorContainer {
-  height: 137px;
+  height: 100%;
   padding: 0.5rem 0.3rem;
   overflow-y: auto;
 }

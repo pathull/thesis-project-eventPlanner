@@ -83,6 +83,7 @@ export interface IMembersAPI {
 
 export interface IDataItems {
   item_name: string;
+  id: number;
 }
 
 export interface IListItems {

@@ -6,8 +6,8 @@ import supertest from 'supertest';
 
 import { UserSchema } from '../src/models/schemas/user-schemas';
 import { EventsSchema } from '../src/models/schemas/event-schema';
-import { sequelize } from '../src/models/connectionDb'
-import appRoutes from '../src/routes/index'
+import { sequelize } from '../src/models/connectionDb';
+import appRoutes from '../src/routes/index';
 
 describe('Integration tests for Create Event routes', () => {
   const app = express();
@@ -16,12 +16,12 @@ describe('Integration tests for Create Event routes', () => {
   app.use('/', appRoutes);
 
   beforeAll(async () => {
-    await sequelize.sync({ force:true })
+    await sequelize.sync({ force: true });
   });
 
   afterEach(async () => {
-    await UserSchema.destroy({ where:{}, force: true });
-    await EventsSchema.destroy({ where:{}, force: true });
+    await UserSchema.destroy({ where: {}, force: true });
+    await EventsSchema.destroy({ where: {}, force: true });
   });
 
   afterAll(async () => {
@@ -30,13 +30,18 @@ describe('Integration tests for Create Event routes', () => {
 
   describe('Post /event', () => {
     test('Should successfully create an event w/o picture', async () => {
-      const user = await UserSchema.create({ email: faker.internet.email(), username: faker.internet.userName(), picUrl: faker.image.image(), name: faker.internet.userName() });
+      const user = await UserSchema.create({
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        picUrl: faker.image.image(),
+        name: faker.internet.userName(),
+      });
 
       const mockEventData = {
         createdBy: user.getDataValue('id'),
         location: faker.lorem.sentence(2),
-        eventDate:faker.lorem.sentence(2),
-        eventName:faker.lorem.sentence(2),
+        eventDate: faker.lorem.sentence(2),
+        eventName: faker.lorem.sentence(2),
         description: faker.lorem.sentence(10),
       };
 
@@ -47,19 +52,22 @@ describe('Integration tests for Create Event routes', () => {
     });
 
     test('Should successfully create an event with a picture', async () => {
-      const user = await UserSchema.create({ email: faker.internet.email(), username: faker.internet.userName(), picUrl: faker.image.image(), name: faker.internet.userName() });
+      const user = await UserSchema.create({
+        email: faker.internet.email(),
+        username: faker.internet.userName(),
+        picUrl: faker.image.image(),
+        name: faker.internet.userName(),
+      });
 
-      const response = await request.post('/api/events')
-      .set("Content-Type", "multipart/form-data")
-      .field("createdBy", `${user.getDataValue('id')}`)
-      .field("eventName", "the place")
-      .field("eventDate", "anything" )
-      .field("location", "1111 street")
-      .field("description", "hello there")
-      .attach(
-        "eventPic",
-        "./__tests__/MJ.jpg"
-      )
+      const response = await request
+        .post('/api/events')
+        .set('Content-Type', 'multipart/form-data')
+        .field('createdBy', `${user.getDataValue('id')}`)
+        .field('eventName', 'the place')
+        .field('eventDate', 'anything')
+        .field('location', '1111 street')
+        .field('description', 'hello there')
+        .attach('eventPic', '../__assets__/MJ.jpg');
 
       expect(response.statusCode).toBe(201);
     });
