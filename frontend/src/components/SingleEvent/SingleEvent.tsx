@@ -1,5 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { AiOutlineUsergroupAdd } from 'react-icons/ai';
+import { MdOutlineNoteAdd } from 'react-icons/md';
 
 import './SingleEvent.css';
 
@@ -7,6 +9,7 @@ import { CurrentEventContext } from '../../context/CurrentEventContext';
 import { UserContext } from '../../context/UserContext';
 import { SocketContext } from '../../context/SocketContext';
 import { MemberCard } from '../../components/MemberCard/MemberCard';
+import { CreatorCard } from '../../components/CreatorCard/CreatorCard';
 import { ItemCard } from '../../components/ItemCard/ItemCard';
 import { Watch } from '../Watch/Watch';
 import { getSingleEventInfo } from '../../services/fetch-events';
@@ -36,7 +39,7 @@ export const SingleEvent = (): JSX.Element => {
     if (userCtx?.userInfo?.id && event?.members && event.members.length > 0) {
       const isMember = event.members.map(member => member.user_id).includes(userCtx.userInfo.id);
 
-      if (isMember) {
+      if (isMember || event.createdBy === userCtx.userInfo.id) {
         if (eventCtx?.eventData?.id) {
           socketCtx?.socket?.emit('join_room', {
             userId: userCtx.userInfo.id,
@@ -83,21 +86,30 @@ export const SingleEvent = (): JSX.Element => {
           <p>{event.description}</p>
         </div>
         <div className="singleEvent__members">
-          <h2>Attendees ({event.members.length})</h2>
-          {event.members.length > 0 ? (
-            <div className="membersList__container">
-              {event.members.map(member => (
-                <MemberCard key={member.id} member={member} />
-              ))}
-            </div>
-          ) : (
-            <div>
-              <p>No Members</p>
-            </div>
-          )}
+          <div className="singleEventMembers__headline">
+            <h2>Attendees ({event.members.length + 1})</h2>
+            <Link to="/add-members" title="Add members">
+              <AiOutlineUsergroupAdd className="addNewMember__icon" />
+            </Link>
+          </div>
+          <div className="membersList__container">
+            <CreatorCard creator={event.user} />
+            {event.members.length > 0 ? (
+              <>
+                {event.members.map(member => (
+                  <MemberCard key={member.id} member={member} />
+                ))}
+              </>
+            ) : null}
+          </div>
         </div>
         <div className="singleEvent__members">
-          <h2>Items ({event.items.length})</h2>
+          <div className="singleEventMembers__headline">
+            <h2>Items ({event.items.length})</h2>
+            <Link to="/add-items" title="Add items">
+              <MdOutlineNoteAdd className="addNewMember__icon" />
+            </Link>
+          </div>
           {event.items.length > 0 ? (
             <div className="membersList__container">
               {event.items.map(item => (
@@ -105,8 +117,8 @@ export const SingleEvent = (): JSX.Element => {
               ))}
             </div>
           ) : (
-            <div>
-              <p>No items for the Event</p>
+            <div className="flex justify-center my-4">
+              <p className="text-2xl font-bold text-[#808080]">No items for the Event</p>
             </div>
           )}
         </div>

@@ -38,6 +38,7 @@ export interface IEvents {
   publicPic_id?: string;
   topic: string;
   members?: Array<IMembersAPI>;
+  user: IUserAPI;
 }
 
 export interface IEventsData {
@@ -103,6 +104,7 @@ export interface ISingleEvent {
   createdBy: number;
   members: Array<IMembersAPI>;
   items: Array<IListItems>;
+  user: IUserAPI;
 }
 
 export interface ICollaboratorsList {

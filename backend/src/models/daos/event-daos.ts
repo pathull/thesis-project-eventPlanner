@@ -58,6 +58,9 @@ export const getSingleEvent = async (eventId: string) => {
         {
           model: ItemListSchema,
         },
+        {
+          model: UserSchema,
+        },
       ],
     });
 

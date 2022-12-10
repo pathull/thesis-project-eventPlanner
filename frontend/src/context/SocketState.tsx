@@ -10,7 +10,6 @@ export const SocketState = ({ children }: { children: JSX.Element }) => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    console.log('It is running');
     if (isAuthenticated && !socket) {
       const socketTemp = io(env.baseUrl, {
         transports: ['websocket'],
