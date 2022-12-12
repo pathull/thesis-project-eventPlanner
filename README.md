@@ -4,7 +4,7 @@
   <img src="https://user-images.githubusercontent.com/66889974/206880794-7a0409c2-dafb-4967-8e57-c0784a2d9f89.png" />
 </p>
 
-Event Planner App is a platform where you can create events that you can manage and organize so your event become a success. Also you can manage the events where you were invited to participate. To make a better communication experience among the members of an event there is a chat that was built to share important information and have fun!.
+Event Planner App is a platform where you can create events that you can manage and organize so your event is successful. Also you can manage the events where you were invited to participate. To make a better communication experience among the members of an event, there is a chat that was built to share important information and have fun.
 
 ## Screenshots
 
@@ -71,12 +71,12 @@ REACT_APP_BASE_URL= // server url
 npm start
 ```
 
-## Build with
+## Built with
 ### Backend
 * [Express](https://expressjs.com/) - Express is a minimal and flexible Node.js web application framework
 * [NodeJs](https://nodejs.org/en/) - An open-source, cross-platform JavaScript runtime environment.
 * [Sequelize](https://sequelize.org/) - ORM for SQL Databases
-* [MariaDB](https://mariadb.org/) - SQL Database
+* [MariaDB](https://mariadb.org/) / [PostgresSQL](https://www.postgresql.org/) - SQL Database
 * [Socket io](https://socket.io/docs/v4/server-api/) - Bidirectional and low-latency communication for every platform.
 * [Cloudinary](https://console.cloudinary.com) - Media Library that allows to store media.
 * [Typescript](https://www.typescriptlang.org/) - TypeScript is a strongly typed programming language that builds on JavaScript.
@@ -91,5 +91,5 @@ npm start
 
 ## Author
 * Gustavo Silva Navarro - [GitHub](https://github.com/GustavoSilvaNavarro) - [Linkedin](https://www.linkedin.com/in/gustavo-silva-navarro/)
-* Patrick Hull - [GitHub](https://github.com/pathull) - [Linkedin]()
-* James Warnsby - [GitHub](https://github.com/jwarnsby) - [Linkedin]()
+* Patrick Hull - [GitHub](https://github.com/pathull) - [Linkedin](https://www.linkedin.com/in/patrick-hull-869a07a4)
+* James Warnsby - [GitHub](https://github.com/jwarnsby) - [Linkedin](https://www.linkedin.com/in/jameswarnsby)
