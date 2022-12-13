@@ -1,9 +1,5 @@
 # Event Planner App
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/66889974/206880794-7a0409c2-dafb-4967-8e57-c0784a2d9f89.png" />
-</p>
-
 Event Planner App is a platform where you can create events that you can manage and organize so your event is successful. Also you can manage the events where you were invited to participate. To make a better communication experience among the members of an event, there is a chat that was built to share important information and have fun.
 
 ## Screenshots
