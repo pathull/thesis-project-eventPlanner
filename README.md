@@ -1,6 +1,6 @@
 # Event Planner App
 
-Event Planner App is a platform where you can create, manage, track, and update events seamlessly. Invite friends, colleagues, or family to event pages where you can chat about and organize the event resources in one place. No more spreadsheets and unorganized group chats. 
+Event Planner App is a platform where you can create, manage, track, and update events seamlessly. Invite friends, colleagues, or family to event pages where you can chat and organize event resources all in one place. No more spreadsheets and unorganized group chats. 
 
 ## Screenshots
 
