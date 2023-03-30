@@ -5,11 +5,11 @@ Event Planner App is a platform where you can create, manage, track, and update 
 ## Screenshots
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/66889974/206881471-760f09c3-06ad-4027-8e30-52b785e217c9.png" />
+  <img src="https://user-images.githubusercontent.com/94504789/228950572-05209786-6a5a-4345-979e-a71df48bc8d9.jpg" />
 
   <img src="https://user-images.githubusercontent.com/66889974/206881579-a1889184-5e66-474b-9174-5b3d4eed9b36.png" />
 
-  <img src="https://user-images.githubusercontent.com/66889974/206881633-3ec3a2a9-3750-4703-af10-4743b99ff864.png" />
+  <img src="https://user-images.githubusercontent.com/94504789/228950781-6f894567-50d4-4693-ba05-688962e874be.jpg" />
 </p>
 
 ## Getting started
